@@ -9,6 +9,8 @@
 
 @import "./component/home/chat-window";
 @import "./component/home/input-messager";
+@import "./component/home/_messager-list.scss";
+@import "./component/home/messager-item";
 
 // page
 @import "./page/home";

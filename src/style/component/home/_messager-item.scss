@@ -1,0 +1,46 @@
+.messager-item {
+    margin-bottom: 30px;
+    
+    .mess-recive-wrap {
+        display: flex;
+        align-items: flex-end;
+
+        .avatar {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+        }
+
+        .name-receive {
+            font-size: 12px;
+            margin-left: 15px;
+            color: rgb(60, 60, 60);
+            font-weight: 500;
+        }
+    
+        .mess-receive {
+            padding: 5px 7px;
+            margin-left: 10px;
+            background-color: #e4e6eb;
+            color: rgb(60, 60, 60);
+            border-radius: 8px 8px 8px 0;
+            max-width: 80%;
+        }
+    }
+
+    .mess-send-wrap {
+        display: flex;
+        justify-content: end;
+        margin-right: 15px;
+
+        .mess-send {
+            max-width: 80%;
+            padding: 5px 7px;
+            color: #fcfcfc;
+            background-color: rgb(101, 126, 210);
+            border-radius: 8px 8px 0 8px;
+        }
+    }
+
+    
+}

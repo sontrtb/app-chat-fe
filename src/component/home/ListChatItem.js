@@ -8,7 +8,7 @@ function ListChatItem() {
                 alt="Avatar"
                 className="avatar"
             />
-            <div style={{width: "80%"}}>
+            <div className="content">
                 <div className="top-item">
                     <h4 className="user-name">Pham Hong Son</h4>
                     <p className="time">12/4</p>

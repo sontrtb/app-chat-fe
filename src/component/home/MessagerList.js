@@ -3,18 +3,32 @@ import MessagerItem from "./MessagerItem";
 function MessagerList() {
 
     return (
-        <div>
-            <MessagerItem />
-            <MessagerItem />
-            <MessagerItem />
-            <MessagerItem />
-            <MessagerItem />
-            <MessagerItem />
-            <MessagerItem />
-            <MessagerItem />
-            <MessagerItem />
-            <MessagerItem />
-            <MessagerItem />
+        <div className="messager-list">
+            
+            <MessagerItem
+                isSend={true}
+            />
+            <MessagerItem
+                isSend={false}
+            />
+            <MessagerItem
+                isSend={true}
+            />
+            <MessagerItem
+                isSend={false}
+            />
+            <MessagerItem
+                isSend={false}
+            />
+            <MessagerItem
+                isSend={false}
+            />
+            <MessagerItem
+                isSend={true}
+            />
+            <MessagerItem
+                isSend={true}
+            />
         </div>
     )
 }
