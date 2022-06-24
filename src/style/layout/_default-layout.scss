@@ -1,0 +1,26 @@
+.default-layout-container {
+    display: flex;
+    background-image: linear-gradient(rgb(180, 142, 253), rgb(101, 126, 210));
+    height: 100vh;
+
+    .side-bar-container {
+        width: 20%;
+    }
+
+    .right-content-container {
+        width: 80%;
+        background-color: #f2f5fd;
+        padding: 30px;
+        border-radius: 40px 0 0 40px;
+    }
+
+    @media only screen and (max-width: 1150px) {
+        .side-bar-container {
+            width: 80px;
+        }
+
+        .right-content-container {
+            width: calc(100% - 80px);
+        }
+    }
+}

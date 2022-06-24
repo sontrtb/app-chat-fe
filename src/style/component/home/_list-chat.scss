@@ -1,0 +1,13 @@
+.list-chat {
+    padding: 0 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    // overflow: hidden;
+    height: 90vh;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+}

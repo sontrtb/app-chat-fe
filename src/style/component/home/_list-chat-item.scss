@@ -1,0 +1,58 @@
+.list-chat-item {
+    display: flex;
+    align-items: center;
+    margin: 0 3px 20px 3px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: rgba(70, 70, 70, 0.16) 0px 1px 2px;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.03);
+        transition: transform 0.2s;
+    }
+
+    .avatar {
+        width: 55px;
+        height: 55px;
+        border-radius: 100%;
+        margin-right: 10px;
+    }
+
+    .top-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: calc(100% - 10px);
+    }
+
+    .user-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: calc(100% - 10px);
+        margin-bottom: 5px;
+        font-weight: 500;
+    }
+    
+    .time {
+        color: #a0a0a0;
+        font-size: 12px;
+    }
+
+    .messager {
+        color: #a0a0a0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 90%;
+    }
+
+    @media only screen and (max-width: 950px) {
+        .time {
+            display: none;
+        }
+    }
+
+}

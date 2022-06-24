@@ -1,0 +1,13 @@
+.home {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .list-chat-container {
+        width: 32%;
+    }
+
+    .chat-window-container {
+        width: 65%;
+    }
+}
