@@ -1,0 +1,34 @@
+.header-chat-window {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 10px 20px;
+    margin-bottom: 10px;
+    box-shadow: rgba(70, 70, 70, 0.16) 0px 1px 2px;
+
+    .right-content {
+        display: flex;
+        align-items: center;
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 20px;
+            border-width: 2px;
+            border-style: solid;
+            border-color: rgb(249, 249, 249);
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 50%);
+        }
+    }
+
+    .left-content {
+
+        .chat-information {
+            font-size: 25px;
+            cursor: pointer;
+        }
+    }
+    
+
+}

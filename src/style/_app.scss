@@ -3,14 +3,21 @@
 @import "./layout//slide-bar";
 @import "./layout/header";
 
+@import "./layout//login-layout/login-layout";
+
 // component
 @import "./component/home/list-chat-item";
 @import "./component/home/list-chat";
 
 @import "./component/home/chat-window";
+@import "./component/home/header_chat_window";
 @import "./component/home/input-messager";
 @import "./component/home/_messager-list.scss";
 @import "./component/home/messager-item";
+@import "./component/home/modal/modal-chat-information";
 
 // page
 @import "./page/home";
+
+// rgb(101, 126, 210)
+// #f2f5fd

@@ -4,6 +4,12 @@ import {ImportOutlined} from '@ant-design/icons';
 
 function SideBar() {
 
+    const navigate = useNavigate()
+
+    const handleLogout = () => {
+        navigate('./login');
+    }
+
     return (
         <div className="side-bar">
             <div className="avatar-wrap">
@@ -45,6 +51,7 @@ function SideBar() {
 
             <div
                 className="logout-wrap"
+                onClick={handleLogout}
             >   
                 <div className="logout-icon">
                     <ImportOutlined />

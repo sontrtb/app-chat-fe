@@ -4,16 +4,16 @@ import { routerList } from '../../../router';
 
 function Header() {
 
-    let location = useLocation();
+    // let location = useLocation();
 
-    const [namePath, setNamePath] = useState('Trang chủ');
+    // const [namePath, setNamePath] = useState('Trang chủ');
 
-    useEffect(() => {
-        routerList.map(item => {
-            if(item.path === location.pathname)
-                setNamePath(item.name)
-        })
-    }, [location]);
+    // useEffect(() => {
+    //     routerList.map(item => {
+    //         if(item.path === location.pathname)
+    //             setNamePath(item.name)
+    //     })
+    // }, [location]);
 
     return (
         <div className='header'>

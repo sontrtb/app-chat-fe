@@ -1,5 +1,5 @@
-import ListChat from "../component/home/ListChat";
-import ChatWindow from "../component/home/ChatWindow";
+import ListChat from "../component/home/list-chat";
+import ChatWindow from "../component/home/chat-window";
 
 function Home() {
 

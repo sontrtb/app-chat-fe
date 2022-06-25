@@ -1,0 +1,27 @@
+.login-layout {
+    background-image: linear-gradient(rgb(180, 142, 253), rgb(101, 126, 210));
+    height: 100vh;
+    display: flex;
+
+    .logo-wrap {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .logo {
+            font-size: 80px;
+            color: #f2f5fd;
+        }
+    }
+
+    .content {
+        width: 50%;
+        background-color: #f2f5fd;
+        border-radius: 40px 0 0 40px;
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

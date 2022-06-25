@@ -1,5 +1,7 @@
 import Home from '../page/Home';
 import User from '../page/User';
+import Register from '../page/Register';
+import Login from '../page/Login';
 
 
 import {
@@ -34,14 +36,14 @@ const routerList = [
     {
         path: "/login",
         name: "Đăng nhập",
-        component: User,
+        component: Login,
         isLogin: false,
         isNavbar: false,
     },
     {
         path: "/register",
         name: "Đăng ký",
-        component: User,
+        component: Register,
         isLogin: false,
         isNavbar: false,
     }

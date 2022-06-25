@@ -2,8 +2,13 @@
 function LoginLayout({ children }) {
 
     return(
-        <div>
-            {children}
+        <div className="login-layout">
+            <div className="logo-wrap">
+                <h1 className="logo">Logo...</h1>
+            </div>
+            <div className="content">
+                {children}
+            </div>
         </div>
     )
 }
