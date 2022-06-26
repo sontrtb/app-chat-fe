@@ -1,5 +1,11 @@
-function MessagerItem( props ) {
+import ReactMessage from "./ReactMessage";
+
+function MessagerItem(props) {
     const { isSend, message } = props;
+
+    const handleReactMessage = (id) => {
+        console.log(id);
+    }
 
     return (
         <div className="messager-item">
@@ -7,6 +13,11 @@ function MessagerItem( props ) {
                 isSend
                     ?
                 <div className="mess-send-wrap">
+                    <ReactMessage
+                        message={message}
+                        isSend={isSend}
+                        handleReactMessage={handleReactMessage}
+                    />
                     <p className="mess-send">{message}</p>
                 </div>
                     :
@@ -18,7 +29,13 @@ function MessagerItem( props ) {
                     />
                     <div>
                         <p className="name-receive">Pham HOng Son</p>
-                        <p className="mess-receive">{message}</p>
+                        <div className="mess-receive-wrap">
+                            <p className="mess-receive">{message}</p>
+                            <ReactMessage
+                                message={message}
+                                handleReactMessage={handleReactMessage}
+                            />
+                        </div>
                     </div>
                 </div>
             }

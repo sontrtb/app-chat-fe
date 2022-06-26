@@ -33,12 +33,12 @@
             color: rgb(214, 214, 214);
             font-size: 16px;
             text-decoration: none;
+            transition: transform 0.2s;
 
             &:hover {
                 color: #fff;
                 transform: scale(1.02);
                 background-color: #A18DF0;
-                transition: transform 0.2s;
             }
 
             .icon-navbar {

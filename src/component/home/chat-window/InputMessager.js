@@ -7,6 +7,9 @@ function InputMessager( props ) {
     const [messageSend, setMessageSend] = useState('');
 
     const handleSendMess = () => {
+        if(messageSend.length === 0)
+            return;
+        
         setListMessage(pre => [...pre, messageSend])
         setMessageSend('');
     }

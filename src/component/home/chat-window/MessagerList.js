@@ -14,10 +14,12 @@ function MessagerList( props ) {
         <div className="messager-list">
             {
                 listMessage.map((item, index) => (
-                    <MessagerItem
-                        isSend={true}
-                        message={item}
-                    />
+                    <div key={index}>
+                        <MessagerItem
+                            isSend={Math.floor(Math.random() * 2) === 1 ? true : false}
+                            message={item}
+                        />
+                    </div>
                 ))
             }
             <div ref={scrollBottomRef}></div>
