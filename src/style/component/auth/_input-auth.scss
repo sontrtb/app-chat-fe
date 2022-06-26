@@ -1,0 +1,29 @@
+.input-auth {
+    display: flex;
+    align-items: center;
+    padding: 2px 10px;
+    background-color: #f2f5fd;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #777;
+    margin-bottom: 20px;
+
+    .icon {
+        font-size: 20px;
+        padding-bottom: 2px;
+        color: #777;
+    }
+
+    .input {
+        border: none;
+        width: 300px;
+        color: #444;
+        padding: 0 5px;
+        background-color: #f2f5fd;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

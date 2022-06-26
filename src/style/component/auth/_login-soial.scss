@@ -1,0 +1,22 @@
+.login-social {
+    margin-top: 50px;
+    text-align: center;
+
+    .social-wrap {
+        display: flex;
+        justify-content: center;
+
+        .icon-social {
+            height: 30px;
+            width: 30px;
+            padding: 5px;
+            margin: 10px 20px 0 20px;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.2);
+                transition: transform 0.3s;
+            }
+        }
+    }
+}

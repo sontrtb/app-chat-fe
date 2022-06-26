@@ -1,4 +1,10 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import InputAuth from '../component/auth/InputAuth';
+import ButtonAuth from '../component/auth/ButtonAuth';
+import LoginSoial from '../component/auth/LoginSocial';
+import {
+    UserOutlined
+} from '@ant-design/icons';
 
 function Login() {
 
@@ -13,15 +19,33 @@ function Login() {
     }
 
     return (
-        <div>
-            <h1>Đăng nhập</h1>
-            <button
-                onClick={openRegister}
-            >chưa có tài khoản, đăng ký</button>
-            <br />
-            <button
+        <div className='auth'>
+            <h1 className='title-page'>Đăng nhập</h1>
+
+            <InputAuth
+                icon={<UserOutlined />}
+                placeholder="Tên đăng nhập..."
+            />
+
+            <InputAuth
+                icon={<UserOutlined />}
+                placeholder="Tên đăng nhập..."
+            />
+
+            <ButtonAuth
+                title="Đăng nhập"
                 onClick={handleLogin}
-            >đăng nhập</button>
+            />
+
+            <div
+                onClick={openRegister}
+                className="ask-account"
+            >
+                Chưa có tài khoản?
+                <span className='link'> Đăng ký</span>
+            </div>
+
+            <LoginSoial />
         </div>
     )
 }
