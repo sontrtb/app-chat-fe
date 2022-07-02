@@ -1,0 +1,36 @@
+.icon-select-reaction {
+    color: #878787;
+    padding: 5px 2px;
+    margin: 0 5px;
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+        .reaction-wrap {
+            display: flex;
+        }
+    }
+
+    .reaction-wrap {
+        position: absolute;
+        display: none;
+        top: -30px;
+        right: -85px;
+        padding: 4px 10px 1px 10px;
+        background-color: #f2f5fd;
+        border-radius: 20px;
+        box-shadow: rgba(70, 70, 70, 0.16) 0px 1px 2px;
+
+        .icon-reaction {
+            height: 25px;
+            margin: 0 2px;
+            padding: 2px;
+            cursor: pointer;
+            transition: transform 0.2s;
+
+            &:hover {
+                transform: scale(1.4);
+            }
+        }
+    }
+}

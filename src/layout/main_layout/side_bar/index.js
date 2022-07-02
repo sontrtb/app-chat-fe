@@ -1,26 +1,55 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { routerList } from '../../../router';
 import {ImportOutlined} from '@ant-design/icons';
+import { getProfile } from '../../../api/apiUser';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../../../redux/actions';
+import avatarDefault from "../../../access/image/avatar_default.jpg";
 
 function SideBar() {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch();
+
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        getProfile((res, err) => {
+            if(res){
+                setUser(res.user)
+                dispatch(addUser(res.user))
+            }
+            else console.log(err)
+        })
+    }, [dispatch])
 
     const handleLogout = () => {
         navigate('./login');
+    }
+    
+    const openProfile = () => {
+        navigate('/profile');
     }
 
     return (
         <div className="side-bar">
             <div className="avatar-wrap">
                 <img
-                    src="https://baoquocte.vn/stores/news_dataimages/dieulinh/012020/29/15/nhung-buc-anh-dep-tuyet-voi-ve-tinh-ban.jpg"
+                    src={user?.avatar || avatarDefault}
                     alt="Avatar"
                     className="avatar-img"
+                    onClick={openProfile}
                 />
-                <div className="update-avatar">
-                    Cập nhật ảnh đại diện
+                <div className='name'>
+                    {user?.last_name + " " + user?.first_name}
                 </div>
+                {
+                    !user?.avatar &&
+                    <div className="update-avatar">
+                        Cập nhật ảnh đại diện
+                    </div>
+                }
             </div>
 
             <ul className="navbar-wrap">

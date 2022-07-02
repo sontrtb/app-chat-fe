@@ -1,7 +1,17 @@
 import ListChat from "../component/home/list-chat";
 import ChatWindow from "../component/home/chat-window";
+import {useLocation} from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 function Home() {
+
+    const location = useLocation();
+
+    const [userChat, setUserChat] = useState({});
+
+    useEffect(() => {
+        setUserChat(location.state)
+    }, [location])
 
     return (
         <div className="home">
@@ -9,7 +19,9 @@ function Home() {
                 <ListChat />
             </div>
             <div className="chat-window-container">
-                <ChatWindow />
+                <ChatWindow
+                    userChat={userChat}
+                />
             </div>
         </div>
     )

@@ -1,0 +1,21 @@
+.list-reacted {
+    position: absolute;
+    bottom: -15px;
+    padding: 1px 7px;
+    background-color: #adb4e1;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    .icon-reaction {
+        height: 15px;
+    }
+
+    .number-reacted {
+        font-size: 13px;
+        font-weight: 600;
+        margin-left: 2px;
+        color: #43475d;
+    }
+}

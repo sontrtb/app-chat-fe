@@ -1,5 +1,5 @@
 
-function ListChatItem() {
+function ListChatItem({ chatItem }) {
 
     return(
         <div className="list-chat-item">

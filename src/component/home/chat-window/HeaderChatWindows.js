@@ -1,8 +1,9 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
 import ModalChatInformation from '../modal/ModalChatInformation';
 import { useState } from 'react';
+import avatarDefault from "../../../access/image/avatar_default.jpg";
 
-function HeaderChatWindow() {
+function HeaderChatWindow({userChat}) {
 
     const [isVisibleModalInfo, setIsVisibleModalInfo] = useState(false);
 
@@ -14,11 +15,11 @@ function HeaderChatWindow() {
         <div className="header-chat-window">
             <div className="right-content">
                 <img
-                    src="https://2.bp.blogspot.com/-kG0fAFQvLvI/WMOUyG3Lg_I/AAAAAAAAASs/gRsqWGzn1wIgU5_Mq-GaTGDgz8J8wdt8wCLcB/s1600/77602.jpg"
+                    src={userChat?.avatar || avatarDefault}
                     alt="anh dai dien"
                     className="avatar"
                 />
-                <h2>Pham Hong Son</h2>
+                <h2>{userChat?.name}</h2>
             </div>
 
             <div className="left-content">

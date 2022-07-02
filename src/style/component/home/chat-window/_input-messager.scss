@@ -1,0 +1,61 @@
+.input-messager {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: calc(100% - 60px);
+    background-color: #fff;
+
+    .input-wrap {
+        display: flex;
+        justify-content: space-between;
+        padding: 4px 10px 4px 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgb(205, 205, 205);
+        border-radius: 20px;
+
+        .input {
+            width: calc(100% - 40px);
+            border: none;
+            
+            &:focus {
+                outline: none;
+            }
+        }
+    
+        .icon-send {
+            font-size: 20px;
+            color: rgb(101, 126, 210);
+        }
+    }
+
+    .pasrent-mess-wrap {
+        border-style: solid;
+        border-width: 1px 0 0 0;
+        border-color: rgb(205, 205, 205);
+        display: flex;
+        justify-content: space-between;
+
+        .parent-mess {
+            margin-left: 60px;
+            color: #a0a0a0;
+        }
+
+        .parent-name {
+            color: #535353;
+
+            .answer {
+                color: #a0a0a0;
+            }
+        }
+
+        .icon-close {
+            margin-right: 10px;
+            font-size: 20px;
+            color: #535353;
+            cursor: pointer;
+        }
+    }
+
+    
+}

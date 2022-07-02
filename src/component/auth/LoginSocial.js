@@ -18,7 +18,7 @@ function LoginSoial() {
 
     return(
         <div className="login-social">
-            <h3>Hoặc đăng nhập bằng: </h3>
+            <h3>Hoặc bắt đầu bằng: </h3>
             <div className="social-wrap">
                 <img
                     src={google}

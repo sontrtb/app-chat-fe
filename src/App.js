@@ -9,10 +9,13 @@ import {
 import DefaultLayout from './layout/main_layout';
 import LoginLayout from './layout/login_layout';
 
+import { Provider } from 'react-redux';
+import store from "./redux/store";
+
 function App() {
 
   return (
-    <div>
+    <Provider store={store}>
       <BrowserRouter>
         <Routes>
           {
@@ -34,7 +37,7 @@ function App() {
           }
         </Routes>
       </BrowserRouter>
-    </div>
+    </Provider>
   );
 }
 

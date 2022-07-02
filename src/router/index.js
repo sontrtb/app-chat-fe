@@ -1,12 +1,13 @@
 import Home from '../page/Home';
-import User from '../page/User';
+import Profile from '../page/Profile';
 import Register from '../page/Register';
 import Login from '../page/Login';
-
+import People from '../page/People';
 
 import {
     MessageOutlined,
-    TeamOutlined
+    TeamOutlined,
+    UserOutlined
 } from '@ant-design/icons';
 
 const routerList = [
@@ -20,18 +21,19 @@ const routerList = [
     },
     {
         path: "/list_friends",
-        name: "Bạn bè",
+        name: "Mọi người",
         icon: <TeamOutlined />,
-        component: User,
+        component: People,
         isLogin: true,
         isNavbar: true,
     },
     {
-        path: "/user",
-        name: "Người dùng",
-        component: User,
+        path: "/profile",
+        name: "Trang cá nhân",
+        icon: <UserOutlined />,
+        component: Profile,
         isLogin: true,
-        isNavbar: false,
+        isNavbar: true,
     },
     {
         path: "/login",

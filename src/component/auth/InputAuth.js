@@ -1,6 +1,6 @@
 
 function InputAuth( props ) {
-    const { icon, value, placeholder, onChange } = props;
+    const { icon, value, placeholder, onChange, errValidate } = props;
 
     return (
         <div className="input-auth">
@@ -13,7 +13,14 @@ function InputAuth( props ) {
                 value={value}
                 onChange={onChange}
             />
+            {
+                errValidate &&
+                <span className='validate-mess'>
+                    {placeholder + " không được để trống"}
+                </span>
+            }
         </div>
+        
     )
 }
 

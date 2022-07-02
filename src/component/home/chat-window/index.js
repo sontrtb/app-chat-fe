@@ -1,26 +1,18 @@
-import InputMessager from "./InputMessager";
 import MessagerList from "./MessagerList";
 import HeaderChatWindow from "./HeaderChatWindows";
 
-import { useState } from 'react';
-
-function ChatWindow() {
-
-    const [listMessage, setListMessage] = useState([]);
+function ChatWindow({userChat}) {
 
     return(
         <div className="chat-window">
             <HeaderChatWindow
-            
+                userChat={userChat}
             />
 
             <MessagerList
-                listMessage={listMessage}
+                userChat={userChat}
             />
 
-            <InputMessager
-                setListMessage={setListMessage}
-            />
         </div>
     )
 }

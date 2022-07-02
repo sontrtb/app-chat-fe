@@ -6,23 +6,36 @@
 @import "./layout//login-layout/login-layout";
 
 // component
-@import "./component/home/list-chat-item";
-@import "./component/home/list-chat";
 
-@import "./component/home/chat-window";
-@import "./component/home/header_chat_window";
-@import "./component/home/input-messager";
-@import "./component/home/_messager-list.scss";
-@import "./component/home/messager-item";
+// home
+@import "./component/home/list-chat/list-chat-item";
+@import "./component/home/list-chat/list-chat";
+
+@import "./component/home/chat-window/chat-window";
+@import "./component/home/chat-window/header_chat_window";
+@import "./component/home/chat-window/input-messager";
+@import "./component/home/chat-window/_messager-list.scss";
+@import "./component/home/chat-window/messager-item";
+@import "./component/home/chat-window/react-message";
+@import "./component/home/chat-window/list-reacted";
+@import "./component/home/chat-window/reply-message";
+
 @import "./component/home/modal/modal-chat-information";
 
+// auth
 @import "./component/auth/input-auth";
 @import "./component/auth/button-auth";
 @import "./component/auth/auth";
 @import "./component/auth/login-soial";
 
+// people
+@import "./component/people/people-item";
+@import "./component/people/user-detail";
+
 // page
 @import "./page/home";
+@import "./page//profile";
+@import "./page/people";
 
 // rgb(101, 126, 210)
 //rgb(180, 142, 253)

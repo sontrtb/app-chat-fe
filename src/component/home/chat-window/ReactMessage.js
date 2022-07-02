@@ -7,44 +7,44 @@ import icon_reaction_6 from "../../../access/icon/reaction_6.png"
 
 import { SmileOutlined } from '@ant-design/icons'
 
+const reactionList = [
+    {
+        name: "Tim",
+        icon: icon_reaction_1,
+        id: 0,
+    },
+    {
+        name: "Tim",
+        icon: icon_reaction_2,
+        id: 1,
+    },
+    {
+        name: "Tim",
+        icon: icon_reaction_3,
+        id: 2,
+    },
+    {
+        name: "Tim",
+        icon: icon_reaction_4,
+        id: 3,
+    },
+    {
+        name: "Tim",
+        icon: icon_reaction_5,
+        id: 4,
+    },
+    {
+        name: "Tim",
+        icon: icon_reaction_6,
+        id: 5,
+    },
+];
+
 function ReactMessage(props) {
     const {handleReactMessage, message, isSend} = props
 
     const rightPositionSend = message?.length < 7 ? (-80 + (55 - 9*message?.length)) : -100;
     const rightPositionReceive = message?.length < 4 ? (-80 - (55 - 9*message?.length)) : -100;
-
-    const reactionList = [
-        {
-            name: "Tim",
-            icon: icon_reaction_1,
-            id: 0,
-        },
-        {
-            name: "Tim",
-            icon: icon_reaction_2,
-            id: 1,
-        },
-        {
-            name: "Tim",
-            icon: icon_reaction_3,
-            id: 2,
-        },
-        {
-            name: "Tim",
-            icon: icon_reaction_4,
-            id: 3,
-        },
-        {
-            name: "Tim",
-            icon: icon_reaction_5,
-            id: 4,
-        },
-        {
-            name: "Tim",
-            icon: icon_reaction_6,
-            id: 5,
-        },
-    ];
 
     return (
         <div className="icon-select-reaction">
@@ -73,4 +73,5 @@ function ReactMessage(props) {
     )
 }
 
+export { reactionList }
 export default ReactMessage;

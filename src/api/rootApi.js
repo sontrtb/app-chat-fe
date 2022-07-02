@@ -5,21 +5,21 @@ const _rootPath = API_URL;
 
 const _defaultOptions = {
     headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': true,
-        'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
-        'Access-Control-Allow-Headers': 'X-Requested-With,Content-Type,Cache-Control,access_token',
+        // 'Content-Type': 'application/json',
+        // 'Access-Control-Allow-Origin': '*',
+        // 'Access-Control-Allow-Credentials': true,
+        // 'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
+        // 'Access-Control-Allow-Headers': '*',
     },
     withCredentials: false,
 };
 
-function fetchApi( options = {} ) {
+function rootApi( options = {} ) {
     const _fetch = axios.create(_defaultOptions);
 
     let defaultOptions = {
         withToken: true,
-        displayError: true
+        // displayError: true
     }
 
     defaultOptions = {
@@ -28,7 +28,7 @@ function fetchApi( options = {} ) {
 
     _fetch.interceptors.request.use((config) => {
         if (defaultOptions.withToken) {
-            const token = JSON.parse(localStorage.getItem('token'));
+            const token = localStorage.getItem('token');
             config.headers.Authorization = token ? `Bearer ${token}` : '';
         }
         return config;
@@ -47,5 +47,5 @@ function fetchApi( options = {} ) {
 
 export {
     _rootPath,
-    fetchApi,
+    rootApi,
 }

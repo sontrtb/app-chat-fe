@@ -8,11 +8,23 @@
         .avatar-img {
             height: 80px;
             width: 80px;
+            cursor: pointer;
             border-radius: 50%;
             border-width: 4px;
             border-style: solid;
             border-color: rgb(249, 249, 249);
             box-shadow: 0 3px 5px 0 rgb(0 0 0 / 50%);
+            transition: transform 0.2s;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+
+        .name {
+            font-weight: 600;
+            font-size: 22px;
+            color: rgb(230, 230, 230);
         }
 
         .update-avatar {
@@ -20,6 +32,11 @@
             cursor: pointer;
             font-size: 14px;
             color: rgb(230, 230, 230);
+            transition: transform 0.2s;
+
+            &:hover {
+                transform: scale(1.1);
+            }
         }
     }
 
@@ -97,6 +114,10 @@
             }
     
             .update-avatar {
+                display: none;
+            }
+
+            .name {
                 display: none;
             }
         }

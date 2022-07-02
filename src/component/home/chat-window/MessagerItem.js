@@ -1,10 +1,16 @@
+import { useState } from "react";
 import ReactMessage from "./ReactMessage";
+import ListReacted from "./ListReacted";
+import ReplyMessage from "./ReplyMessage";
 
 function MessagerItem(props) {
-    const { isSend, message } = props;
+    const { isSend, message, setParentMess } = props;
+
+    const [listReact, setListReact] = useState([]);
 
     const handleReactMessage = (id) => {
         console.log(id);
+        setListReact(pre => [...pre, id])
     }
 
     return (
@@ -13,12 +19,23 @@ function MessagerItem(props) {
                 isSend
                     ?
                 <div className="mess-send-wrap">
-                    <ReactMessage
-                        message={message}
-                        isSend={isSend}
-                        handleReactMessage={handleReactMessage}
-                    />
+                    <div className="action-message">
+                        <div onClick={() => setParentMess(message)}>
+                            <ReplyMessage />
+                        </div>
+                        <ReactMessage
+                            message={message}
+                            isSend={isSend}
+                            handleReactMessage={handleReactMessage}
+                        />
+                    </div>
+
                     <p className="mess-send">{message}</p>
+
+                    <ListReacted
+                        listReact={listReact}
+                        isSend={isSend}
+                    />
                 </div>
                     :
                 <div className="mess-recive-wrap">
@@ -31,9 +48,20 @@ function MessagerItem(props) {
                         <p className="name-receive">Pham HOng Son</p>
                         <div className="mess-receive-wrap">
                             <p className="mess-receive">{message}</p>
-                            <ReactMessage
-                                message={message}
-                                handleReactMessage={handleReactMessage}
+
+                            <div className="action-message">
+                                <ReactMessage
+                                    message={message}
+                                    handleReactMessage={handleReactMessage}
+                                />
+                                <div onClick={() => setParentMess(message)}>
+                                    <ReplyMessage />
+                                </div>
+                            </div>
+
+                            <ListReacted
+                                listReact={listReact}
+                                isSend={isSend}
                             />
                         </div>
                     </div>
