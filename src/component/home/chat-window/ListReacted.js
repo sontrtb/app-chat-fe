@@ -12,15 +12,17 @@ function ListReacted( props ) {
                     style={isSend ? {right: "15px"}: {left: "10px"}}
                 >
                     {
-                        listReact?.map((id, index) => (
-                            <img
-                                key={index}
-                                src={reactionList[id].icon}
-                                alt={reactionList[id].name}
-                                className="icon-reaction"
-                            />
-                        ))
-                    }
+                        listReact?.map((react, index) => {
+                            const reactConvert = reactionList.filter(item => item.name === react)[0]
+                            return (
+                                <img
+                                    key={index}
+                                    src={reactConvert.icon}
+                                    alt={reactConvert.name}
+                                    className="icon-reaction"
+                                />
+                            )
+                        })}
                     <div className="number-reacted">{listReact.length}</div>
                     
                 </div>

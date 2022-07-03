@@ -50,7 +50,7 @@ function Register() {
         {
             name: "first_name",
             icon: <UserOutlined />,
-            placeholder: "Họ...",
+            placeholder: "Họ, Tên đệm ...",
             value: valueRegister.first_name
         },
         {
@@ -87,8 +87,8 @@ function Register() {
                 if(res) {
                     localStorage.setItem("token", res.token)
                     dispatch(addUser(res.user))
-                    navigate('/')
                     setValueRegister(valueRegisterInit)
+                    navigate('/')
                     // setPasswordAgain("")
                 }
             })
@@ -133,7 +133,7 @@ function Register() {
                 <span className='link'> Đăng nhập</span>
             </div>
 
-            <LoginSoial />
+            {/* <LoginSoial /> */}
         </div>
     )
 }

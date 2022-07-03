@@ -1,19 +1,43 @@
+import moment from "moment";
+import { getFullNameSend } from "../../../ultis/getInformationMess";
+import avatarDefault from "../../../access/image/avatar_default.jpg";
 
-function ListChatItem({ chatItem }) {
+function ListChatItem({ chatItem, chatRoom }) {
+
+    const {name, last_message, avatar, room_id} = chatItem;
+    const {created_at, type, text} = last_message
+
+    const dateNow = moment().format("DD/MM/YYYY"); 
+    const getTimeMess = () => {
+        if(moment(created_at).format("DD/MM/YYYY") === dateNow)
+            return moment(created_at).format("hh:mm");
+        return moment(created_at).format("DD/MM/YYYY");
+    }
+
+    const getLastMess = () => {
+        if(type === "text")
+            return text;
+        else return `Đã gửi một ${type}`
+    }
 
     return(
-        <div className="list-chat-item">
+        <div
+            className="list-chat-item"
+            style={chatRoom === room_id ? {transform: "scale(1.1)"} : null}
+        >
             <img
-                src="https://baoquocte.vn/stores/news_dataimages/dieulinh/012020/29/15/nhung-buc-anh-dep-tuyet-voi-ve-tinh-ban.jpg"
+                src={avatar || avatarDefault}
                 alt="Avatar"
                 className="avatar"
             />
             <div className="content">
                 <div className="top-item">
-                    <h4 className="user-name">Pham Hong Son</h4>
-                    <p className="time">12/4</p>
+                    <h4 className="user-name">{name}</h4>
+                    <p className="time">{getTimeMess()}</p>
                 </div>
-                <p className="messager">helo 123 323 324244 243 4 34 3 43 43 43 4 34 </p>
+                <p className="messager">
+                    { getFullNameSend(last_message) + ": " + getLastMess()}
+                </p>
             </div>
         </div>
     )

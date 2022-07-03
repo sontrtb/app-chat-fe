@@ -1,11 +1,14 @@
 import { SendOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { sendMessage } from "../../../api/apiMessage";
+import { useSelector } from 'react-redux';
+import { getFullNameSend } from "../../../ultis/getInformationMess";
 
 function InputMessager( props ) {
     const { setListMessage, parentMess, setParentMess, roomId } = props;
 
-    console.log(roomId)
+    const user = useSelector((state) => state.user).value;
+    const userId = user?.id;
 
     let formData = new FormData();
 
@@ -14,6 +17,7 @@ function InputMessager( props ) {
     const clearFormData = () => {
         formData.delete('type');
         formData.delete('text');
+        formData.delete('reply_to');
     }
 
     const handleSendMess = () => {
@@ -23,12 +27,13 @@ function InputMessager( props ) {
         formData.append('room_id', roomId);
         formData.append('type', ["text"]);
         formData.append('text', messageSend);
+        parentMess?.id && formData.append('reply_to', parentMess?.id)
 
         sendMessage(formData, (res, err) => {
             if(res){
-                setListMessage(pre => [...pre, messageSend])
+                setListMessage(pre => [...pre, {text: messageSend, sender: {id: userId}}])
                 setMessageSend('');
-                setParentMess('');
+                setParentMess({});
                 clearFormData();
             }
         })
@@ -40,20 +45,20 @@ function InputMessager( props ) {
     }
 
     const handleClearParentMess = () => {
-        setParentMess('');
+        setParentMess({});
     }
 
     return(
         <div className="input-messager">
             {
-                parentMess.length > 0 &&
+                parentMess?.text &&
                 <div className='pasrent-mess-wrap'>
                     <div>
                         <h4 className='parent-name'>
                             <span className='answer'>Trả lời: </span>
-                            Phạm Hồng Sơn
+                            {getFullNameSend(parentMess)}
                         </h4>
-                        <p className='parent-mess'>{parentMess}</p>
+                        <p className='parent-mess'>{parentMess.text}</p>
                     </div>
                     <div
                         className='icon-close'

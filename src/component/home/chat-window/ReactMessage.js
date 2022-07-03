@@ -9,32 +9,32 @@ import { SmileOutlined } from '@ant-design/icons'
 
 const reactionList = [
     {
-        name: "Tim",
+        name: "love",
         icon: icon_reaction_1,
         id: 0,
     },
     {
-        name: "Tim",
+        name: "haha",
         icon: icon_reaction_2,
         id: 1,
     },
     {
-        name: "Tim",
+        name: "wow",
         icon: icon_reaction_3,
         id: 2,
     },
     {
-        name: "Tim",
+        name: "sad",
         icon: icon_reaction_4,
         id: 3,
     },
     {
-        name: "Tim",
+        name: "angry",
         icon: icon_reaction_5,
         id: 4,
     },
     {
-        name: "Tim",
+        name: "like",
         icon: icon_reaction_6,
         id: 5,
     },
@@ -58,7 +58,7 @@ function ReactMessage(props) {
                     reactionList.map(item => (
                         <div
                             key={item.id}
-                            onClick={() => handleReactMessage(item.id)}
+                            onClick={() => handleReactMessage(item.name)}
                         >
                             <img
                                 src={item.icon}

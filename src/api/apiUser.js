@@ -4,6 +4,7 @@ const path = {
     user: {
         profile: _rootPath + "/get_profile",
         list_user: _rootPath + "/search_user",
+        set_avatar: _rootPath + "/set_avatar",
     }
 }
 
@@ -31,7 +32,20 @@ const getListUser = (params, callback) => {
         })
 }
 
+function setAvatar(data, callback) {
+    rootApi({
+        withToken: true
+    }).post(path.user.set_avatar, data)
+    .then(res => {
+        return callback(res.data);
+    })
+    .catch(err => {
+        return callback(null, err);
+    });
+}
+
 export {
    getProfile,
-   getListUser
+   getListUser,
+   setAvatar
 };

@@ -29,10 +29,10 @@ function Login() {
     const handleLogin = () => {
         LoginAPI(valueLogin, (res, err) => {
             if(res){
-                navigate('/')
                 localStorage.setItem("token", res.token)
                 dispatch(addUser(res.user))
                 setValueLogin(valueLoginInit)
+                navigate('/')
             }
         })
         
@@ -69,7 +69,7 @@ function Login() {
                 <span className='link'> Đăng ký</span>
             </div>
 
-            <LoginSoial />
+            {/* <LoginSoial /> */}
         </div>
     )
 }

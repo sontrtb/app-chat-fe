@@ -3,33 +3,50 @@ import { routerList } from '../../../router';
 import {ImportOutlined} from '@ant-design/icons';
 import { getProfile } from '../../../api/apiUser';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from '../../../redux/actions';
 import avatarDefault from "../../../access/image/avatar_default.jpg";
+import { setAvatar } from "../../../api/apiUser";
 
 function SideBar() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.user).value;
 
-    const [user, setUser] = useState({});
+    const formData = new FormData();
 
     useEffect(() => {
         getProfile((res, err) => {
             if(res){
-                setUser(res.user)
                 dispatch(addUser(res.user))
             }
             else console.log(err)
         })
-    }, [dispatch])
+    }, [])
 
     const handleLogout = () => {
+        localStorage.removeItem('token');
         navigate('./login');
+        window.location.reload();
     }
     
     const openProfile = () => {
         navigate('/profile');
+    }
+
+    const handleChangeAvatar = (e) => {
+        const avatar = e.target.files[0]
+        formData.append("avatar", avatar)
+
+        setAvatar(formData, (res, err) => {
+            if(res) {
+                dispatch(addUser(res.user))
+            }
+
+            formData.delete("avatar")
+        })
+
     }
 
     return (
@@ -42,12 +59,23 @@ function SideBar() {
                     onClick={openProfile}
                 />
                 <div className='name'>
-                    {user?.last_name + " " + user?.first_name}
+                    {user?.first_name + " " + user?.last_name}
                 </div>
                 {
                     !user?.avatar &&
-                    <div className="update-avatar">
-                        Cập nhật ảnh đại diện
+                    <div>
+                        <label 
+                            className="update-avatar"
+                            htmlFor="input-avatar_slide-bar"
+                        >
+                            Cập nhật ảnh đại diện
+                        </label>
+                        <input
+                            type="file"
+                            className='none'
+                            id="input-avatar_slide-bar"
+                            onChange={handleChangeAvatar}
+                        />
                     </div>
                 }
             </div>

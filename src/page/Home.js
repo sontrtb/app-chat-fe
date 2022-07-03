@@ -16,7 +16,10 @@ function Home() {
     return (
         <div className="home">
             <div className="list-chat-container">
-                <ListChat />
+                <ListChat
+                    setUserChat={setUserChat}
+                    chatRoom={userChat?.id}
+                />
             </div>
             <div className="chat-window-container">
                 <ChatWindow

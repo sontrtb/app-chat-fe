@@ -2,25 +2,38 @@ import ListChatItem from "./ListChatItem";
 import { getListChat } from "../../../api/apiMessage";
 import { useState, useEffect } from "react";
 
-function ListChat() {
+function ListChat({ setUserChat, chatRoom }) {
 
     const [listChat, setListChat] = useState([]);
 
     useEffect(() => {
         getListChat((res, err) => {
             if(res)
-                console.log(res)
+                setListChat(res.data)
         })
     }, [])
 
     return(
         <div className="list-chat">
             {
-                listChat.map(chatItem => (
-                    <div>
-                        <ListChatItem chatItem={chatItem}/>
-                    </div>
-                ))
+                listChat.map(chatItem => {
+                    const dataChat = {
+                        id: chatItem.room_id,
+                        name: chatItem.name,
+                        avatar: null,
+                    }
+                    return (
+                        <div
+                            key={chatItem.room_id}
+                            onClick={() => setUserChat(dataChat)}
+                        >
+                            <ListChatItem
+                                chatItem={chatItem}
+                                chatRoom={chatRoom}
+                            />
+                        </div>
+                    )
+                })
             }
             {
                 listChat.length === 0 && (

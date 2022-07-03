@@ -2,15 +2,34 @@ import { useState } from "react";
 import ReactMessage from "./ReactMessage";
 import ListReacted from "./ListReacted";
 import ReplyMessage from "./ReplyMessage";
+import {
+    getFullNameSend,
+    getAvatarUserSend
+} from "../../../ultis/getInformationMess";
+import { reactMessage } from "../../../api/apiMessage";
 
 function MessagerItem(props) {
     const { isSend, message, setParentMess } = props;
 
-    const [listReact, setListReact] = useState([]);
+    const messId = message.id;
 
-    const handleReactMessage = (id) => {
-        console.log(id);
-        setListReact(pre => [...pre, id])
+    const {reaction} = message;
+    const reactionInit = reaction?.map(item => item.reaction)
+
+    const [listReact, setListReact] = useState(reactionInit);
+
+    const handleReactMessage = (name) => {
+        const data = {
+            "message_id": messId,
+            "reaction": name
+        }
+        reactMessage(data, (res, err) => {
+            if(res) {
+                console.log(res);
+                setListReact(pre => [...pre, name])
+            }
+        })
+
     }
 
     return (
@@ -24,13 +43,13 @@ function MessagerItem(props) {
                             <ReplyMessage />
                         </div>
                         <ReactMessage
-                            message={message}
+                            message={message.text}
                             isSend={isSend}
                             handleReactMessage={handleReactMessage}
                         />
                     </div>
 
-                    <p className="mess-send">{message}</p>
+                    <p className="mess-send">{message.text}</p>
 
                     <ListReacted
                         listReact={listReact}
@@ -40,18 +59,20 @@ function MessagerItem(props) {
                     :
                 <div className="mess-recive-wrap">
                     <img
-                        src="https://2.bp.blogspot.com/-kG0fAFQvLvI/WMOUyG3Lg_I/AAAAAAAAASs/gRsqWGzn1wIgU5_Mq-GaTGDgz8J8wdt8wCLcB/s1600/77602.jpg"
+                        src={getAvatarUserSend(message)}
                         alt="anh dai dien"
                         className="avatar"
                     />
                     <div>
-                        <p className="name-receive">Pham HOng Son</p>
+                        <p className="name-receive">
+                            {getFullNameSend(message)}
+                        </p>
                         <div className="mess-receive-wrap">
-                            <p className="mess-receive">{message}</p>
+                            <p className="mess-receive">{message.text}</p>
 
                             <div className="action-message">
                                 <ReactMessage
-                                    message={message}
+                                    message={message.text}
                                     handleReactMessage={handleReactMessage}
                                 />
                                 <div onClick={() => setParentMess(message)}>

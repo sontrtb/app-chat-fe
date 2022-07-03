@@ -1,6 +1,10 @@
 .side-bar {
     overflow: hidden;
 
+    .none {
+        display: none;
+    }
+
     .avatar-wrap {
         margin: 50px 0 ;
         text-align: center;
