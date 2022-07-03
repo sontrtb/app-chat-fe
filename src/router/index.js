@@ -36,6 +36,14 @@ const routerList = [
         isNavbar: true,
     },
     {
+        path: "/waiting_message",
+        name: "Tin nhắn chờ",
+        icon: <UserOutlined />,
+        component: Profile,
+        isLogin: true,
+        isNavbar: true,
+    },
+    {
         path: "/login",
         name: "Đăng nhập",
         component: Login,
@@ -48,7 +56,15 @@ const routerList = [
         component: Register,
         isLogin: false,
         isNavbar: false,
-    }
+    },
+    {
+        path: "*",
+        name: "Trang chủ",
+        component: Home,
+        icon: <MessageOutlined />,
+        isLogin: true,
+        isNavbar: false,
+    },
 ];
 
 export {

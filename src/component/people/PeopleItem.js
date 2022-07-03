@@ -1,11 +1,12 @@
 import avatarDefault from "../../access/image/avatar_default.jpg";
+import { API_MEDIA_URL } from "../../config/index";
 
 function PeopleItem({item}) {
 
     return (
         <div className="people-item">
            <img
-                src={item.avatar || avatarDefault}
+                src={item.avatar ? API_MEDIA_URL+item.avatar : avatarDefault}
                 alt="Avatar"
                 className="avatar"
             />

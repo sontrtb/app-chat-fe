@@ -7,11 +7,10 @@ import {
     getAvatarUserSend
 } from "../../../ultis/getInformationMess";
 import { reactMessage } from "../../../api/apiMessage";
+import { API_MEDIA_URL } from "../../../config/index";
 
 function MessagerItem(props) {
     const { isSend, message, setParentMess } = props;
-
-    const messId = message.id;
 
     const {reaction} = message;
     const reactionInit = reaction?.map(item => item.reaction)
@@ -20,7 +19,7 @@ function MessagerItem(props) {
 
     const handleReactMessage = (name) => {
         const data = {
-            "message_id": messId,
+            "message_id": message.id,
             "reaction": name
         }
         reactMessage(data, (res, err) => {
@@ -49,7 +48,17 @@ function MessagerItem(props) {
                         />
                     </div>
 
-                    <p className="mess-send">{message.text}</p>
+                    <div className="mess-send">
+                        {
+                            message.image &&
+                            <img
+                                src={API_MEDIA_URL + message.image}
+                                alt="anh gui len"
+                                className="image-mess"
+                            />
+                        }
+                        <p>{message.text}</p>
+                    </div>
 
                     <ListReacted
                         listReact={listReact}
@@ -68,7 +77,18 @@ function MessagerItem(props) {
                             {getFullNameSend(message)}
                         </p>
                         <div className="mess-receive-wrap">
-                            <p className="mess-receive">{message.text}</p>
+
+                            <div className="mess-receive">
+                                {
+                                    message.image &&
+                                    <img
+                                        src={API_MEDIA_URL + message.image}
+                                        alt="anh gui len"
+                                        className="image-mess"
+                                    />
+                                }
+                                <p>{message.text}</p>
+                            </div>
 
                             <div className="action-message">
                                 <ReactMessage

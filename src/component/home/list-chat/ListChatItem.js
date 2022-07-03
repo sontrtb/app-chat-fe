@@ -1,6 +1,7 @@
 import moment from "moment";
 import { getFullNameSend } from "../../../ultis/getInformationMess";
 import avatarDefault from "../../../access/image/avatar_default.jpg";
+import { API_MEDIA_URL } from "../../../config/index";
 
 function ListChatItem({ chatItem, chatRoom }) {
 
@@ -26,7 +27,7 @@ function ListChatItem({ chatItem, chatRoom }) {
             style={chatRoom === room_id ? {transform: "scale(1.1)"} : null}
         >
             <img
-                src={avatar || avatarDefault}
+                src={avatar ? API_MEDIA_URL+avatar : avatarDefault}
                 alt="Avatar"
                 className="avatar"
             />

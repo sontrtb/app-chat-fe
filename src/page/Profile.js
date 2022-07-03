@@ -3,6 +3,7 @@ import { addUser } from '../redux/actions';
 import avatarDefault from "../access/image/avatar_default.jpg";
 import { setAvatar } from "../api/apiUser";
 import { MailOutlined, PhoneOutlined, CameraOutlined } from "@ant-design/icons";
+import { API_MEDIA_URL } from "../config/index";
 
 function Profile() {
 
@@ -29,7 +30,7 @@ function Profile() {
         <div className="profile">
             <div className='avatar-wrap'>
                 <img
-                    src={user?.avatar || avatarDefault}
+                    src={user?.avatar ? API_MEDIA_URL+user.avatar : avatarDefault}
                     alt="Avatar"
                     className="avatar-img"
                 />

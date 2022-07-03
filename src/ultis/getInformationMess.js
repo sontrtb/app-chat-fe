@@ -6,7 +6,9 @@ function getFullNameSend (data) {
 }
 
 function getAvatarUserSend (data) {
-    return API_MEDIA_URL + data.sender.avatar || avatarDefault ;
+    if(data.sender.avatar)
+        return API_MEDIA_URL + data.sender.avatar;
+    return avatarDefault
 }
 
 function getIdUserSend( data ) {

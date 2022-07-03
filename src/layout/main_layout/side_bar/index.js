@@ -2,11 +2,12 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { routerList } from '../../../router';
 import {ImportOutlined} from '@ant-design/icons';
 import { getProfile } from '../../../api/apiUser';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from '../../../redux/actions';
 import avatarDefault from "../../../access/image/avatar_default.jpg";
 import { setAvatar } from "../../../api/apiUser";
+import { API_MEDIA_URL } from "../../../config/index";
 
 function SideBar() {
 
@@ -53,7 +54,7 @@ function SideBar() {
         <div className="side-bar">
             <div className="avatar-wrap">
                 <img
-                    src={user?.avatar || avatarDefault}
+                    src={user?.avatar ? API_MEDIA_URL+user.avatar : avatarDefault}
                     alt="Avatar"
                     className="avatar-img"
                     onClick={openProfile}

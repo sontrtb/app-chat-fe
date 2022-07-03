@@ -20,7 +20,7 @@ function ListChat({ setUserChat, chatRoom }) {
                     const dataChat = {
                         id: chatItem.room_id,
                         name: chatItem.name,
-                        avatar: null,
+                        avatar: chatItem.avatar,
                     }
                     return (
                         <div

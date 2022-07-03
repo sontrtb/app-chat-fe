@@ -2,8 +2,60 @@
     position: absolute;
     bottom: 20px;
     left: 20px;
-    width: calc(100% - 60px);
+    width: calc(100% - 40px);
     background-color: #fff;
+
+    .flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .none {
+        display: none;
+    }
+
+    .image-send-wrap {
+        position: relative;
+
+        .image-send {
+            height: 35px;
+            width: 35px;
+            margin-right: 10px;
+            border-radius: 10px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(249, 249, 249);
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 30%);
+            cursor: pointer;
+        }
+
+        .icon-delete-image {
+            position: absolute;
+            cursor: pointer;
+            top: -14px;
+            right: -2px;
+            padding: 0 2px;
+            font-size: 20px;
+            color: rgb(60, 101, 236);
+            background-color: #fff;
+            border-radius: 50%;
+        }
+    }
+
+    .icon-image {
+        font-size: 20px;
+        color: rgb(101, 126, 210);
+        margin-right: 10px;
+        padding: 9px 10px;
+        border-radius: 50%;
+        background-color: #f2f5fd;
+        cursor: pointer;
+        
+        &:hover {
+            box-shadow: rgba(70, 70, 70, 0.5) 0px 1px 2px;
+        }
+    }
 
     .input-wrap {
         display: flex;
@@ -13,6 +65,7 @@
         border-width: 1px;
         border-color: rgb(205, 205, 205);
         border-radius: 20px;
+        width: 100%;
 
         .input {
             width: calc(100% - 40px);
