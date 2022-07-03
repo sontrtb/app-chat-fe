@@ -28,8 +28,37 @@ function MessagerItem(props) {
                 setListReact(pre => [...pre, name])
             }
         })
-
     }
+
+    const renderContentMess = (message) => {
+        return (
+            <div>
+                {
+                    message.image &&
+                    <img
+                        src={API_MEDIA_URL + message.image}
+                        alt="anh gui/nhan"
+                        className="image-mess"
+                    />
+                }
+                {
+                    message.video &&
+                    <video width="420" height="300" controls>
+                        <source
+                            src={API_MEDIA_URL + message.video}
+                            type="video/mp4"
+                        />
+                        <source
+                            src={API_MEDIA_URL + message.video}
+                            type="video/mp4"
+                        />
+                        Your browser does not support the video tag.
+                    </video>
+                }
+                <p>{message.text}</p>
+            </div>
+        )
+    } 
 
     return (
         <div className="messager-item">
@@ -49,15 +78,7 @@ function MessagerItem(props) {
                     </div>
 
                     <div className="mess-send">
-                        {
-                            message.image &&
-                            <img
-                                src={API_MEDIA_URL + message.image}
-                                alt="anh gui len"
-                                className="image-mess"
-                            />
-                        }
-                        <p>{message.text}</p>
+                        {renderContentMess(message)}
                     </div>
 
                     <ListReacted
@@ -79,15 +100,7 @@ function MessagerItem(props) {
                         <div className="mess-receive-wrap">
 
                             <div className="mess-receive">
-                                {
-                                    message.image &&
-                                    <img
-                                        src={API_MEDIA_URL + message.image}
-                                        alt="anh gui len"
-                                        className="image-mess"
-                                    />
-                                }
-                                <p>{message.text}</p>
+                                {renderContentMess(message)}
                             </div>
 
                             <div className="action-message">

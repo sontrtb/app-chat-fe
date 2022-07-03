@@ -1,7 +1,8 @@
 import {
     SendOutlined,
     CloseCircleOutlined,
-    PictureOutlined
+    PictureOutlined,
+    PlayCircleOutlined
 } from '@ant-design/icons';
 import { useState, useRef, useEffect } from 'react';
 import { sendMessage } from "../../../api/apiMessage";
@@ -12,9 +13,9 @@ function InputMessager( props ) {
     const { setListMessage, parentMess, setParentMess, roomId } = props;
 
     const user = useSelector((state) => state.user).value;
-    const userId = user?.id;
 
     const typeMess = useRef([]);
+    const videoPreviewRef = useRef();
 
     let formData = new FormData();
 
@@ -130,14 +131,40 @@ function InputMessager( props ) {
             <div className='flex'>
                 <div>   
                     {
-                        convertTypeFile(fileSend?.type) === "image" ?
-                        <div className="image-send-wrap">
+                        (
+                            convertTypeFile(fileSend?.type) === "image" ||
+                            convertTypeFile(fileSend?.type) === "video"
+                        )
+                        ?
+                        <div className="image-preview-wrap">
                             <label htmlFor="input-image-message">
-                                <img
-                                    src={fileSend.preview}
-                                    alt="send img"
-                                    className="image-send"
-                                />
+                                {
+                                    convertTypeFile(fileSend?.type) === "image" &&
+                                    <img
+                                        src={fileSend.preview}
+                                        alt="send img"
+                                        className="image-preview"
+                                    />
+                                }
+                                {
+                                    convertTypeFile(fileSend?.type) === "video" &&
+                                    <div className='video-preview-wrap'>
+                                        <video
+                                            width="50"
+                                            height="50"
+                                            className='video-preview'
+                                            muted
+                                            ref={videoPreviewRef}
+                                        >
+                                            <source
+                                                src={fileSend.preview}
+                                                type="video/mp4"
+                                            />
+                                            Your browser does not support the video tag.
+                                        </video>
+                                        <PlayCircleOutlined className="icon-play"/>
+                                    </div>
+                                }
                             </label>
                             <div
                                 className='icon-delete-image'

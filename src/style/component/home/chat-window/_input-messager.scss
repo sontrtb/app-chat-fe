@@ -15,12 +15,12 @@
         display: none;
     }
 
-    .image-send-wrap {
+    .image-preview-wrap {
         position: relative;
 
-        .image-send {
-            height: 35px;
-            width: 35px;
+        .image-preview {
+            height: 50px;
+            width: 50px;
             margin-right: 10px;
             border-radius: 10px;
             border-width: 1px;
@@ -28,6 +28,30 @@
             border-color: rgb(249, 249, 249);
             box-shadow: 0 1px 3px 0 rgb(0 0 0 / 30%);
             cursor: pointer;
+        }
+
+        .video-preview-wrap {
+            position: relative;
+
+            .video-preview {
+                margin-right: 10px;
+                border-radius: 10px;
+                border-width: 1px;
+                border-style: solid;
+                border-color: rgb(249, 249, 249);
+                box-shadow: 0 1px 3px 0 rgb(0 0 0 / 30%);
+                cursor: pointer;
+            }
+
+            .icon-play {
+                position: absolute;
+                left: 16px;
+                top: 16px;
+                font-size: 20px;
+                color: rgb(60, 101, 236);
+                background-color: #fff;
+                border-radius: 50%;
+            }
         }
 
         .icon-delete-image {

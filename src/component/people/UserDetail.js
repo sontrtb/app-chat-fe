@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import avatarDefault from "../../access/image/avatar_default.jpg";
+import { API_MEDIA_URL } from "../../config/index";
 
 function UserDetail({user}) {
 
@@ -20,7 +21,7 @@ function UserDetail({user}) {
             style={!user.last_name ? {display: "none"} : null}
         >
             <img
-                src={user.avatar || avatarDefault}
+                src={user?.avatar ? API_MEDIA_URL+user.avatar : avatarDefault}
                 alt="Avatar"
                 className="avatar"
             />
