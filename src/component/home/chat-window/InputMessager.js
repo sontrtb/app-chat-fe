@@ -110,14 +110,16 @@ function InputMessager( props ) {
     return(
         <div className="input-messager">
             {
-                parentMess?.text &&
+                parentMess?.type &&
                 <div className='pasrent-mess-wrap'>
                     <div>
                         <h4 className='parent-name'>
                             <span className='answer'>Trả lời: </span>
                             {getFullNameSend(parentMess)}
                         </h4>
-                        <p className='parent-mess'>{parentMess.text}</p>
+                        <p className='parent-mess'>
+                            {parentMess.text ? parentMess.text : parentMess.type}
+                        </p>
                     </div>
                     <div
                         className='icon-close'

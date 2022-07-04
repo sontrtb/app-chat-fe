@@ -3,11 +3,13 @@ import Profile from '../page/Profile';
 import Register from '../page/Register';
 import Login from '../page/Login';
 import People from '../page/People';
+import PendingChat from '../page/PendingChat';
 
 import {
     MessageOutlined,
     TeamOutlined,
-    UserOutlined
+    UserOutlined,
+    ExclamationCircleOutlined
 } from '@ant-design/icons';
 
 const routerList = [
@@ -28,16 +30,16 @@ const routerList = [
         isNavbar: true,
     },
     {
-        path: "/profile",
-        name: "Trang cá nhân",
-        icon: <UserOutlined />,
-        component: Profile,
+        path: "/pending_chat",
+        name: "Tin nhắn chờ",
+        icon: <ExclamationCircleOutlined />,
+        component: PendingChat,
         isLogin: true,
         isNavbar: true,
     },
     {
-        path: "/waiting_message",
-        name: "Tin nhắn chờ",
+        path: "/profile",
+        name: "Trang cá nhân",
         icon: <UserOutlined />,
         component: Profile,
         isLogin: true,

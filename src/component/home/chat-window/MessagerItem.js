@@ -12,7 +12,7 @@ import { API_MEDIA_URL } from "../../../config/index";
 function MessagerItem(props) {
     const { isSend, message, setParentMess } = props;
 
-    const {reaction} = message;
+    const {reaction, reply_to} = message;
     const reactionInit = reaction?.map(item => item.reaction)
 
     const [listReact, setListReact] = useState(reactionInit);
@@ -58,7 +58,21 @@ function MessagerItem(props) {
                 <p>{message.text}</p>
             </div>
         )
-    } 
+    }
+
+    const renderParentMess = (reply_to) => {
+        if(!reply_to)
+            return;
+
+        if(reply_to.type  === "text")
+            return (
+                <p className="parent-mess">{reply_to.text}</p>
+            )
+        
+        return (
+            <p className="parent-mess">{reply_to.type}</p>
+        )
+    }
 
     return (
         <div className="messager-item">
@@ -66,6 +80,7 @@ function MessagerItem(props) {
                 isSend
                     ?
                 <div className="mess-send-wrap">
+                    {renderParentMess(reply_to)}
                     <div className="action-message">
                         <div onClick={() => setParentMess(message)}>
                             <ReplyMessage />
@@ -98,6 +113,8 @@ function MessagerItem(props) {
                             {getFullNameSend(message)}
                         </p>
                         <div className="mess-receive-wrap">
+
+                            {renderParentMess(reply_to)}
 
                             <div className="mess-receive">
                                 {renderContentMess(message)}

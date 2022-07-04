@@ -6,6 +6,7 @@ const path = {
         list_chat: _rootPath + "/get_recent_messages",
         list_mess: _rootPath + "/get_messages",
         react_mess: _rootPath + "/react_to_message",
+        list_pending_chat: _rootPath + "/get_pending_messages",
     }
 }
 
@@ -25,6 +26,18 @@ function getListMessage(params, callback) {
     rootApi({
         withToken: true
     }).get(path.message.list_mess, {params: params})
+    .then(res => {
+        return callback(res.data);
+    })
+    .catch(err => {
+        return callback(null, err);
+    })
+}
+
+function getPendingChat(callback) {
+    rootApi({
+        withToken: true
+    }).get(path.message.list_pending_chat)
     .then(res => {
         return callback(res.data);
     })
@@ -61,5 +74,6 @@ export {
     sendMessage,
     getListChat,
     getListMessage,
-    reactMessage
+    reactMessage,
+    getPendingChat,
 };

@@ -3,9 +3,11 @@ import {
     EditOutlined,
     CameraOutlined,
 } from '@ant-design/icons';
+import avatarDefault from "../../../access/image/avatar_default.jpg";
+import { API_MEDIA_URL } from "../../../config/index";
 
 function ModalChatInformation( props ) {
-    const { isVisible, toggerModal } = props;
+    const { isVisible, toggerModal, userChat } = props;
 
     return(
         <div
@@ -25,7 +27,7 @@ function ModalChatInformation( props ) {
             <div className='content'>
                 <div className='avatar-wrap'>
                     <img
-                        src="https://2.bp.blogspot.com/-kG0fAFQvLvI/WMOUyG3Lg_I/AAAAAAAAASs/gRsqWGzn1wIgU5_Mq-GaTGDgz8J8wdt8wCLcB/s1600/77602.jpg"
+                        src={userChat?.avatar ? API_MEDIA_URL+userChat.avatar : avatarDefault}
                         alt="anh dai dien"
                         className="avatar"
                     />
@@ -35,7 +37,7 @@ function ModalChatInformation( props ) {
                 </div>
                 
                 <h3>
-                    Pham Hong Son
+                    {userChat?.name}
                     <span className='icon-edit'>
                         <EditOutlined />
                     </span>

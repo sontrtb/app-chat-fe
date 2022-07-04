@@ -1,11 +1,23 @@
 .messager-item {
     margin: 20px 0;
     position: relative;
+    z-index: 10;
 
     &:hover {
         .action-message {
             display: flex;
         }
+    }
+
+    .parent-mess {
+        background-color: #f0f0f0;
+        padding: 3px 5px;
+        color: #777676;
+        border-radius: 7px;
+        position: absolute;
+        top: -25px;
+        z-index: -1;
+        box-shadow: rgba(70, 70, 70, 0.5) -2px 1px 2px;
     }
 
     .action-message {
@@ -40,6 +52,7 @@
             display: flex;
             align-items: flex-end;
             position: relative;
+            z-index: 2;
 
             .mess-receive {
                 max-width: 500px;
@@ -64,6 +77,7 @@
         justify-content: end;
         align-items: flex-end;
         margin-right: 15px;
+        z-index: 10;
 
         .mess-send {
             max-width: 70%;

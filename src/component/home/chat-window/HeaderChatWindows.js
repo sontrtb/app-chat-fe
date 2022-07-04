@@ -36,6 +36,7 @@ function HeaderChatWindow({userChat}) {
             <ModalChatInformation
                 isVisible={isVisibleModalInfo}
                 toggerModal={toggerModalChatInfor}
+                userChat={userChat}
             />
 
         </div>
