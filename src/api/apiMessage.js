@@ -2,7 +2,7 @@ import { _rootPath, rootApi } from "./rootApi";
 
 const path = {
     message: {
-        send: _rootPath + "/add_new_message",
+        send: _rootPath + "/send_message",
         list_chat: _rootPath + "/get_recent_messages",
         list_mess: _rootPath + "/get_messages",
         react_mess: _rootPath + "/react_to_message",

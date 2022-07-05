@@ -8,6 +8,7 @@ import {
 } from "../../../ultis/getInformationMess";
 import { reactMessage } from "../../../api/apiMessage";
 import { API_MEDIA_URL } from "../../../config/index";
+import checkTypeFile from "../../../ultis/checkTypeFile";
 
 function MessagerItem(props) {
     const { isSend, message, setParentMess } = props;
@@ -34,22 +35,18 @@ function MessagerItem(props) {
         return (
             <div>
                 {
-                    message.image &&
+                    checkTypeFile(message.files[0]) === "image" &&
                     <img
-                        src={API_MEDIA_URL + message.image}
+                        src={API_MEDIA_URL + message.files[0]}
                         alt="anh gui/nhan"
                         className="image-mess"
                     />
                 }
                 {
-                    message.video &&
+                    checkTypeFile(message.files[0]) === "video" &&
                     <video width="420" height="300" controls>
                         <source
-                            src={API_MEDIA_URL + message.video}
-                            type="video/mp4"
-                        />
-                        <source
-                            src={API_MEDIA_URL + message.video}
+                            src={API_MEDIA_URL + message.files[0]}
                             type="video/mp4"
                         />
                         Your browser does not support the video tag.

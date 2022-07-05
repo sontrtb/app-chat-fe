@@ -31,9 +31,8 @@ function InputMessager( props ) {
 
     // clear data
     const clearFormData = () => {
-        formData.delete('type');
         formData.delete('text');
-        formData.delete('image');
+        formData.delete('file');
         formData.delete('reply_to');
         typeMess.current = [];
         setFileSend();
@@ -68,23 +67,15 @@ function InputMessager( props ) {
             return;
         
         if(messageSend.length !== 0){
-            typeMess.current.push("text")
             formData.append('text', messageSend);
         }
 
         if(fileSend) {
-            typeMess.current.push(convertTypeFile(fileSend.type))
-            formData.append(convertTypeFile(fileSend.type), fileSend);
+            formData.append("file1", fileSend);
         }
 
         formData.append('room_id', roomId);
-        formData.append('type', typeMess.current);
-        
         parentMess?.id && formData.append('reply_to', parentMess?.id)
-
-        for (var key of formData.keys()) {
-            console.log(key); 
-         }
 
         sendMessage(formData, (res, err) => {
             if(res){

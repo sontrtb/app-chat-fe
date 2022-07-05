@@ -2,11 +2,12 @@ import moment from "moment";
 import { getFullNameSend } from "../../../ultis/getInformationMess";
 import avatarDefault from "../../../access/image/avatar_default.jpg";
 import { API_MEDIA_URL } from "../../../config/index";
+import checkTypeFile from "../../../ultis/checkTypeFile";
 
 function ListChatItem({ chatItem, chatRoom }) {
 
     const {name, last_message, avatar, room_id} = chatItem;
-    const {created_at, type, text} = last_message
+    const {created_at, file, text} = last_message
 
     const dateNow = moment().format("DD/MM/YYYY"); 
     const getTimeMess = () => {
@@ -16,9 +17,9 @@ function ListChatItem({ chatItem, chatRoom }) {
     }
 
     const getLastMess = () => {
-        if(type === "text")
+        if(text)
             return text;
-        else return `Đã gửi một ${type}`
+        return `Đã gửi một file đính kèm`
     }
 
     return(
