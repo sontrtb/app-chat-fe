@@ -5,7 +5,7 @@ function checkTypeFile(url) {
         return null;
     
     var ext = url.split('.').pop();
-    if (ext === 'jpg' || ext === 'jpeg' || ext === 'png' || ext === 'gif') {
+    if (ext === 'jpg' || ext === 'jpeg' || ext === 'png' || ext === 'gif' || ext === 'JPG') {
         return 'image';
     } else if (ext === 'mp4' || ext === 'ogg' || ext === 'webm') {
         return 'video';

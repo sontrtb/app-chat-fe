@@ -10,6 +10,33 @@ import { reactMessage } from "../../../api/apiMessage";
 import { API_MEDIA_URL } from "../../../config/index";
 import checkTypeFile from "../../../ultis/checkTypeFile";
 
+const renderContentMess = (message) => {
+
+    return (
+        <div>
+            {
+                message?.files && checkTypeFile(message?.files[0]) === "image" &&
+                <img
+                    src={API_MEDIA_URL + message?.files[0]}
+                    alt="anh gui/nhan"
+                    className="image-mess"
+                />
+            }
+            {
+                message?.files && checkTypeFile(message?.files[0]) === "video" &&
+                <video width="420" height="300" controls>
+                    <source
+                        src={API_MEDIA_URL + message.files[0]}
+                        type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                </video>
+            }
+            <p>{message?.text}</p>
+        </div>
+    )
+}
+
 function MessagerItem(props) {
     const { isSend, message, setParentMess } = props;
 
@@ -31,43 +58,17 @@ function MessagerItem(props) {
         })
     }
 
-    const renderContentMess = (message) => {
-        return (
-            <div>
-                {
-                    checkTypeFile(message.files[0]) === "image" &&
-                    <img
-                        src={API_MEDIA_URL + message.files[0]}
-                        alt="anh gui/nhan"
-                        className="image-mess"
-                    />
-                }
-                {
-                    checkTypeFile(message.files[0]) === "video" &&
-                    <video width="420" height="300" controls>
-                        <source
-                            src={API_MEDIA_URL + message.files[0]}
-                            type="video/mp4"
-                        />
-                        Your browser does not support the video tag.
-                    </video>
-                }
-                <p>{message.text}</p>
-            </div>
-        )
-    }
-
     const renderParentMess = (reply_to) => {
         if(!reply_to)
             return;
 
-        if(reply_to.type  === "text")
+        if(reply_to.text)
             return (
                 <p className="parent-mess">{reply_to.text}</p>
             )
         
         return (
-            <p className="parent-mess">{reply_to.type}</p>
+            <p className="parent-mess">{checkTypeFile(reply_to?.files[0])}</p>
         )
     }
 
@@ -140,3 +141,4 @@ function MessagerItem(props) {
 }
 
 export default MessagerItem;
+export {renderContentMess};

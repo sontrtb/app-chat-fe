@@ -1,0 +1,13 @@
+.pending-chat {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .list-pending-container {
+        width: 32%;
+    }
+
+    .profile-window-container {
+        width: 65%;
+    }
+}
