@@ -4,7 +4,7 @@ function checkTypeFile(url) {
     if(!url)
         return null;
     
-    var ext = url.split('.').pop();
+    var ext = url.split('.').pop().toLocaleLowerCase();
     if (ext === 'jpg' || ext === 'jpeg' || ext === 'png' || ext === 'gif') {
         return 'image';
     } else if (ext === 'mp4' || ext === 'ogg' || ext === 'webm') {
