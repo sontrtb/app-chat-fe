@@ -2,7 +2,7 @@ import ListChatItem from "./ListChatItem";
 import { getPendingChat } from "../../../api/apiMessage";
 import { useState, useEffect } from "react";
 
-function ListPendingChat({setUserChat}) {
+function ListPendingChat({setUserPendingChat}) {
 
     const [listChat, setListChat] = useState([]);
 
@@ -19,7 +19,7 @@ function ListPendingChat({setUserChat}) {
                 listChat.map(chatItem => (
                         <div
                             key={chatItem.room_id}
-                            onClick={() => setUserChat(chatItem)}
+                            onClick={() => setUserPendingChat(chatItem)}
                         >
                             <ListChatItem
                                 chatItem={chatItem}

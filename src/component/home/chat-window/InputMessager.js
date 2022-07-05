@@ -8,6 +8,7 @@ import { useState, useRef, useEffect } from 'react';
 import { sendMessage } from "../../../api/apiMessage";
 import { useSelector } from 'react-redux';
 import { getFullNameSend } from "../../../ultis/getInformationMess";
+import checkTypeFile from "../../../ultis/checkTypeFile";
 
 function InputMessager( props ) {
     const { setListMessage, parentMess, setParentMess, roomId } = props;
@@ -21,7 +22,8 @@ function InputMessager( props ) {
 
     const [messageSend, setMessageSend] = useState('');
     const [fileSend, setFileSend] = useState();
-
+    
+    console.log(parentMess)
     // get type file
     const convertTypeFile = (input) => {
         if(!input)
@@ -101,7 +103,7 @@ function InputMessager( props ) {
     return(
         <div className="input-messager">
             {
-                parentMess?.type &&
+                parentMess?.id &&
                 <div className='pasrent-mess-wrap'>
                     <div>
                         <h4 className='parent-name'>
@@ -109,7 +111,7 @@ function InputMessager( props ) {
                             {getFullNameSend(parentMess)}
                         </h4>
                         <p className='parent-mess'>
-                            {parentMess.text ? parentMess.text : parentMess.type}
+                            {parentMess.text ? parentMess.text : checkTypeFile(parentMess?.files[0])}
                         </p>
                     </div>
                     <div

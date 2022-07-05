@@ -32,10 +32,14 @@
 @import "./component/people/people-item";
 @import "./component/people/user-detail";
 
+//pending-chat
+@import "./component//pending-chat/profile/profile-user-pending.scss";
+
 // page
 @import "./page/home";
 @import "./page//profile";
 @import "./page/people";
+@import "./page//pending-chat";
 
 // rgb(101, 126, 210)
 //rgb(180, 142, 253)
