@@ -22,8 +22,7 @@ function InputMessager( props ) {
 
     const [messageSend, setMessageSend] = useState('');
     const [fileSend, setFileSend] = useState();
-    
-    console.log(parentMess)
+
     // get type file
     const convertTypeFile = (input) => {
         if(!input)

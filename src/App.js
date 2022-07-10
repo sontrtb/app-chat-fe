@@ -7,6 +7,9 @@ import {
   Navigate,
 } from "react-router-dom";
 
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
 import DefaultLayout from './layout/main_layout';
 import LoginLayout from './layout/login_layout';
 
@@ -67,6 +70,7 @@ function App() {
           }
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </Provider>
   );
 }

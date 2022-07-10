@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_URL } from "../config";
+import {errorNotification} from "../ultis/notification";
 
 const _rootPath = API_URL;
 
@@ -19,7 +20,7 @@ function rootApi( options = {} ) {
 
     let defaultOptions = {
         withToken: true,
-        // displayError: true
+        displayError: true
     }
 
     defaultOptions = {
@@ -37,6 +38,11 @@ function rootApi( options = {} ) {
     _fetch.interceptors.response.use(undefined, (error) => {
         if(defaultOptions.displayError) {
             console.log(error)
+            if(error.response.data) {
+                errorNotification(error.response.data.message)
+            } else {
+                errorNotification(error.message)
+            }
         }
 
         return Promise.reject(error);

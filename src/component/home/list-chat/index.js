@@ -8,13 +8,14 @@ function ListChat({ setUserChat, chatRoom }) {
 
     const [isVisibleModal, setIsVisibleModal] = useState(false);
     const [listChat, setListChat] = useState([]);
+    const [reload, setReload] = useState(true);
 
     useEffect(() => {
         getListChat((res, err) => {
             if(res)
                 setListChat(res.data)
         })
-    }, [])
+    }, [reload])
 
     return(
         <div className="list-chat">
@@ -33,6 +34,7 @@ function ListChat({ setUserChat, chatRoom }) {
                         id: chatItem.room_id,
                         name: chatItem.name,
                         avatar: chatItem.avatar,
+                        room_type: chatItem.room_type
                     }
                     return (
                         <div
@@ -58,9 +60,8 @@ function ListChat({ setUserChat, chatRoom }) {
             <ModalCreateGroup
                 isVisible={isVisibleModal}
                 setIsVisibleModal={setIsVisibleModal}
-            > 
-                hello
-            </ModalCreateGroup>
+                reloadListChat={() => setReload(!reload)}
+            />
         </div>
     )
 }
