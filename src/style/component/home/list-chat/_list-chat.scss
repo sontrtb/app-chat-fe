@@ -16,4 +16,27 @@
         color: rgb(114, 114, 114);
         margin-top: 200px;
     }
+
+    .create-group {
+        padding: 10px 15px;
+        margin-bottom: 30px;
+        margin-top: 10px;
+        background-color: #fff;
+        box-shadow: rgba(70, 70, 70, 0.16) 0px 1px 2px;
+        border-radius: 10px;
+        font-size: 20px;
+        font-weight: 500;
+        color: rgb(114, 114, 114);
+        display: flex;
+        justify-content: space-between;
+        transition: transform 0.2s;
+
+        &:hover {
+            transform: scale(1.03);
+        }
+
+        .create-group-icon {
+            font-size: 30px;
+        }
+    }
 }

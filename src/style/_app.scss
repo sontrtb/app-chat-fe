@@ -21,6 +21,7 @@
 @import "./component/home/chat-window/reply-message";
 
 @import "./component/home/modal/modal-chat-information";
+@import "./component/home/modal/modal-create-group";
 
 // auth
 @import "./component/auth/input-auth";
@@ -40,6 +41,9 @@
 @import "./page//profile";
 @import "./page/people";
 @import "./page//pending-chat";
+
+// global
+@import "./global/modal";
 
 // rgb(101, 126, 210)
 //rgb(180, 142, 253)

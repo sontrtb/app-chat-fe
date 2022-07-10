@@ -1,9 +1,12 @@
 import ListChatItem from "./ListChatItem";
 import { getListChat } from "../../../api/apiMessage";
 import { useState, useEffect } from "react";
+import ModalCreateGroup from "./ModalCreateGroup";
+import {UsergroupAddOutlined} from "@ant-design/icons";
 
 function ListChat({ setUserChat, chatRoom }) {
 
+    const [isVisibleModal, setIsVisibleModal] = useState(false);
     const [listChat, setListChat] = useState([]);
 
     useEffect(() => {
@@ -15,6 +18,15 @@ function ListChat({ setUserChat, chatRoom }) {
 
     return(
         <div className="list-chat">
+            <div
+                className="create-group"
+                onClick={() => setIsVisibleModal(!isVisibleModal)}
+            >   
+                <div>
+                    Tạo nhóm chat
+                </div>
+                <UsergroupAddOutlined className="create-group-icon"/>
+            </div>
             {
                 listChat.map(chatItem => {
                     const dataChat = {
@@ -42,6 +54,13 @@ function ListChat({ setUserChat, chatRoom }) {
                     </div>
                 )
             }
+
+            <ModalCreateGroup
+                isVisible={isVisibleModal}
+                setIsVisibleModal={setIsVisibleModal}
+            > 
+                hello
+            </ModalCreateGroup>
         </div>
     )
 }
