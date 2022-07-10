@@ -9,6 +9,10 @@
     box-shadow: -5px 0px 10px 0px rgba(170, 170, 170, 0.3);
     transition: transform 0.3s;
 
+    .none {
+        display: none;
+    }
+
     .header {
         display: flex;
         justify-content: space-between;
@@ -64,6 +68,16 @@
             margin-left: 5px;
             color: rgb(101, 126, 210);
             cursor: pointer;
+        }
+
+        .input-name {
+            padding: 4px 10px;
+            border-radius: 10px;
+            border-width: 1px;
+
+            &:focus {
+                outline: none;
+            }
         }
 
         .line {
@@ -133,10 +147,6 @@
                         border-style: solid;
                         border-color: rgb(249, 249, 249);
                         box-shadow: 0 1px 3px 0 rgb(0 0 0 / 50%);
-                    }
-
-                    .name {
-
                     }
                 }
             }

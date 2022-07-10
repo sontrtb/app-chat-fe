@@ -3,19 +3,27 @@ import {
     EditOutlined,
     CameraOutlined,
     UserAddOutlined,
+    CheckOutlined,
 } from '@ant-design/icons';
 import avatarDefault from "../../../access/image/avatar_default.jpg";
 import { API_MEDIA_URL } from "../../../config/index";
 import { useState, useEffect } from "react";
 import ModalAddMember from './ModalAddMember';
-import { informationGroup } from "../../../api/apiGroup";
+import ModalMemberInfor from './ModalMemberInfor';
+import { informationGroup, updateGroup } from "../../../api/apiGroup";
 
 function ModalChatInformation( props ) {
     const { isVisible, toggerModal, userChat } = props;
 
     const [isVisibleModalAdd, setIsVisibleModalAdd] = useState(false);
+    const [isVisibleModalMember, setIsVisibleModalMember] = useState(false);
     const [inforGroup, setInforGroup] = useState(userChat);
     const [reloadInforGroup, setReloadInforGroup] = useState(true);
+    const [showInputName, setShowInputName] = useState(false);
+    const [nameUpdate, setNameUpdate] = useState(inforGroup?.name);
+    const [memberSelect, setMemberSelect] = useState({});
+
+    const formData = new FormData();
 
     useEffect(() => {
         setInforGroup(userChat)
@@ -36,13 +44,35 @@ function ModalChatInformation( props ) {
         setIsVisibleModalAdd(!isVisibleModalAdd);
     }
 
-    const updateAvatarGroup = () => {
-        // errorNotification("dssds");
-        // console.log("hell")
+    const updateAvatarGroup = (e) => {
+        const avatar = e.target.files[0]
+        if(avatar) {
+            formData.append("avatar", avatar)
+            updateGroup(formData, (res, err) => {
+                if(res) {
+                    console.log(res)
+                }
+
+                formData.delete("avatar")
+            })
+        }
     }
 
     const updateNameGroup = () => {
+        formData.append("name", nameUpdate)
+        updateGroup(formData, (res, err) => {
+            if(res) {
+                console.log(res)
+            }
 
+            formData.delete("name")
+            setShowInputName(false);
+        })
+    }
+
+    const handleSelectMember = (item) => {
+        setIsVisibleModalMember(true);
+        setMemberSelect(item);
     }
 
     return(
@@ -70,66 +100,81 @@ function ModalChatInformation( props ) {
                         />
                         {
                             inforGroup.room_type==="group" &&
-                            <div
-                            className='icon-avatar'
-                            onClick={updateAvatarGroup}
-                        >
-                            <CameraOutlined />
-                        </div>
+                            <label
+                                className='icon-avatar'
+                                htmlFor="input-avatar_modal-chat-infor"
+                            >
+                                <CameraOutlined />
+                            </label>
                         }
+                        <input
+                            type="file"
+                            id="input-avatar_modal-chat-infor"
+                            className='none'
+                            onChange={updateAvatarGroup}
+                        />
                     </div>
                     
-                    <h3>
-                        {inforGroup?.name}
-                        {
-                            inforGroup.room_type==="group" &&
+                    {
+                        !showInputName ?
+                        <h3>
+                            {inforGroup?.name}
+                            {
+                                inforGroup.room_type==="group" &&
+                                <span
+                                    className='icon-edit'
+                                    onClick={() => setShowInputName(true)}
+                                >
+                                    <EditOutlined/>
+                                </span>
+                            }
+                        </h3> :
+                        <div>
+                            <input
+                                className='input-name'
+                                value={nameUpdate}
+                                onChange={e => setNameUpdate(e.target.value)}
+                            />
                             <span
                                 className='icon-edit'
                                 onClick={updateNameGroup}
                             >
-                                <EditOutlined />
+                                <CheckOutlined/>
                             </span>
-                        }
-                    </h3>
+                        </div>
+                    }
 
                     <div className='line'></div>
                     
                     {
                         inforGroup.room_type==="group" &&
                         <div className='member-wrap'>
-                        <div className='header-member-wrap'>
-                            <h3>Thành viên:</h3>
-                            <UserAddOutlined
-                                className="add-member"
-                                onClick={toggerModalAddMember}    
-                            />
-                        </div>
-
-                        <div className='member-list'>
-                            {
-                                inforGroup?.members?.map(item => (
-                                    <div className='member'>
-                                        <img
-                                            src={item?.avatar ? API_MEDIA_URL+item.avatar : avatarDefault}
-                                            alt="anh dai dien"
-                                            className="avatar"
-                                        />
-                                        <p className='name'>{item.first_name + " " + item.last_name}</p>
-                                    </div>
-                                ))
-                            }
-                            
-
-                            {/* <div className='member'>
-                                <img
-                                    src="https://2.bp.blogspot.com/-kG0fAFQvLvI/WMOUyG3Lg_I/AAAAAAAAASs/gRsqWGzn1wIgU5_Mq-GaTGDgz8J8wdt8wCLcB/s1600/77602.jpg"
-                                    alt="anh dai dien"
-                                    className="avatar"
+                            <div className='header-member-wrap'>
+                                <h3>Thành viên:</h3>
+                                <UserAddOutlined
+                                    className="add-member"
+                                    onClick={toggerModalAddMember}    
                                 />
-                                <p className='name'>pham hogn son</p>
-                            </div> */}
+                            </div>
+
+                            <div className='member-list'>
+                                {
+                                    inforGroup?.members?.map(item => (
+                                        <div
+                                            className='member'
+                                            onClick={() => handleSelectMember(item)}
+                                        >
+                                            <img
+                                                src={item?.avatar ? API_MEDIA_URL+item.avatar : avatarDefault}
+                                                alt="anh dai dien"
+                                                className="avatar"
+                                            />
+                                            <p className='name'>{item.first_name + " " + item.last_name}</p>
+                                        </div>
+                                    ))
+                                }
+                            </div>
                         </div>
-                    </div>
                     }
                 </div>
 
@@ -137,6 +182,15 @@ function ModalChatInformation( props ) {
                     isVisible={isVisibleModalAdd}
                     setIsVisible={setIsVisibleModalAdd}
                     idChat={inforGroup.id}
+                    reloadInforGroup={() => setReloadInforGroup(!reloadInforGroup)}
+                />
+
+                <ModalMemberInfor
+                    isVisible={isVisibleModalMember}
+                    setIsVisible={setIsVisibleModalMember}
+                    userChat={memberSelect}
+                    toggerModalChatInfo={toggerModal}
+                    idGroup={userChat.id}
                     reloadInforGroup={() => setReloadInforGroup(!reloadInforGroup)}
                 />
             </div>

@@ -11,9 +11,7 @@ const path = {
 }
 
 function getListChat(callback) {
-    rootApi({
-        withToken: true
-    }).get(path.message.list_chat)
+    rootApi().get(path.message.list_chat)
     .then(res => {
         return callback(res.data);
     })
@@ -24,7 +22,7 @@ function getListChat(callback) {
 
 function getListMessage(params, callback) {
     rootApi({
-        withToken: true
+        displayError: false,
     }).get(path.message.list_mess, {params: params})
     .then(res => {
         return callback(res.data);
@@ -35,9 +33,7 @@ function getListMessage(params, callback) {
 }
 
 function getPendingChat(callback) {
-    rootApi({
-        withToken: true
-    }).get(path.message.list_pending_chat)
+    rootApi().get(path.message.list_pending_chat)
     .then(res => {
         return callback(res.data);
     })
@@ -59,9 +55,7 @@ function sendMessage(data, callback) {
 }
 
 function reactMessage(data, callback) {
-    rootApi({
-        withToken: true
-    }).post(path.message.react_mess, data)
+    rootApi().post(path.message.react_mess, data)
     .then(res => {
         return callback(res.data);
     })

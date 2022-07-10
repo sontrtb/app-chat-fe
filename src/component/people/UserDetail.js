@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import avatarDefault from "../../access/image/avatar_default.jpg";
 import { API_MEDIA_URL } from "../../config/index";
+import {MessageOutlined} from "@ant-design/icons";
 
 function UserDetail({user}) {
 
@@ -27,7 +28,14 @@ function UserDetail({user}) {
             />
             <h2>{user.last_name + " " + user.first_name}</h2>
             
-            <button onClick={openWindowChat}>Nhắn tin</button>
+            <div
+                className='message'
+                onClick={openWindowChat}
+            >
+                <MessageOutlined />
+                <span> </span>
+                Nhắn tin
+            </div>
         </div>
     )
 }

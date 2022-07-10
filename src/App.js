@@ -70,7 +70,7 @@ function App() {
           }
         </Routes>
       </BrowserRouter>
-      <ToastContainer />
+      <ToastContainer limit={2000} />
     </Provider>
   );
 }

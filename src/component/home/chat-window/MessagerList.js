@@ -22,6 +22,7 @@ function MessagerList( {userChat} ) {
         getListMessage(params, (res, err) => {
             if(res)
                 setListMessage(res.messages)
+            else setListMessage([]);
         })
     }, [userChat])
 

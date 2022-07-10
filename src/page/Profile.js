@@ -14,16 +14,16 @@ function Profile() {
 
     const handleChangeAvatar = (e) => {
         const avatar = e.target.files[0]
-        formData.append("avatar", avatar)
+        if(avatar) {
+            formData.append("avatar", avatar)
+            setAvatar(formData, (res, err) => {
+                if(res) {
+                    dispatch(addUser(res.user))
+                }
 
-        setAvatar(formData, (res, err) => {
-            if(res) {
-                dispatch(addUser(res.user))
-            }
-
-            formData.delete("avatar")
-        })
-        
+                formData.delete("avatar")
+            })
+        }
     }
 
     return (

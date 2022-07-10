@@ -6,13 +6,12 @@ const path = {
         addMember: _rootPath + "/add_user_to_group",
         updateGroup: _rootPath + "/group_settings",
         groupInfo: _rootPath + "/group_info",
+        deleteMember: _rootPath + "/remove_user_from_group",
     }
 }
 
 function createGroup(data, callback) {
-    rootApi({
-        withToken: true
-    }).post(path.group.create, data)
+    rootApi().post(path.group.create, data)
     .then(res => {
         return callback(res.data);
     })
@@ -22,9 +21,7 @@ function createGroup(data, callback) {
 }
 
 function addMember(data, callback) {
-    rootApi({
-        withToken: true
-    }).post(path.group.addMember, data)
+    rootApi().post(path.group.addMember, data)
     .then(res => {
         return callback(res.data);
     })
@@ -34,9 +31,7 @@ function addMember(data, callback) {
 }
 
 function updateGroup(data, callback) {
-    rootApi({
-        withToken: true
-    }).post(path.group.updateGroup, data)
+    rootApi().post(path.group.updateGroup, data)
     .then(res => {
         return callback(res.data);
     })
@@ -46,9 +41,7 @@ function updateGroup(data, callback) {
 }
 
 function informationGroup(params, callback) {
-    rootApi({
-        withToken: true
-    }).get(path.group.groupInfo, {params: params})
+    rootApi().get(path.group.groupInfo, {params: params})
     .then(res => {
         return callback(res.data);
     })
@@ -57,10 +50,20 @@ function informationGroup(params, callback) {
     })
 }
 
+function deleteMember(data, callback) {
+    rootApi().post(path.group.deleteMember, data)
+    .then(res => {
+        return callback(res.data);
+    })
+    .catch(err => {
+        return callback(null, err);
+    });
+}
 
 export {
     createGroup,
     addMember,
     updateGroup,
     informationGroup,
+    deleteMember
 };
