@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Modal from "../../global/modal/Modal";
 import PeopleList from "../../people/PeopleList";
 import { addMember } from "../../../api/apiGroup";
-import { successNotification } from "../../../ultis/notification";
 
 function ModalAddMember( props) {
     const {isVisible, setIsVisible, idChat, reloadInforGroup} = props;
@@ -19,7 +18,6 @@ function ModalAddMember( props) {
             if(res) {
                 reloadInforGroup();
                 setIsVisible(false);
-                successNotification("Thêm thành công")
             }
         })
     }

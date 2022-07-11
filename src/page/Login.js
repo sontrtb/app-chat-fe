@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { LoginAPI } from '../api/apiAuth';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../redux/actions';
+import { successNotification } from "../ultis/notification";
 
 function Login() {
 
@@ -29,6 +30,7 @@ function Login() {
     const handleLogin = () => {
         LoginAPI(valueLogin, (res, err) => {
             if(res){
+                successNotification("Đăng nhập thành công")
                 localStorage.setItem("token", res.token)
                 dispatch(addUser(res.user))
                 setValueLogin(valueLoginInit)
