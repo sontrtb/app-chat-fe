@@ -2,6 +2,7 @@ import { useState } from "react";
 import { API_MEDIA_URL } from "../../../config/index";
 import checkTypeFile from "../../../ultis/checkTypeFile";
 import ModalImageDetail from "../modal/ModalImageDetail";
+// import UrlIfy from "../../../ultis/converUrl";
 
 function RenderContentMess ({message}) {
 
@@ -33,6 +34,7 @@ function RenderContentMess ({message}) {
                 </video>
             }
             <p>{message?.text}</p>
+            {/* <UrlIfy text={message?.text} /> */}
 
             <ModalImageDetail
                 isVisible={isVisibleModal}

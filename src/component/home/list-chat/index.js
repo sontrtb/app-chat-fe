@@ -3,8 +3,9 @@ import { getListChat } from "../../../api/apiMessage";
 import { useState, useEffect } from "react";
 import ModalCreateGroup from "./ModalCreateGroup";
 import {UsergroupAddOutlined} from "@ant-design/icons";
+import { informationGroup } from "../../../api/apiGroup";
 
-function ListChat({ setUserChat, chatRoom }) {
+function ListChat({ setUserChat, chatRoom, listMessageSocket }) {
 
     const [isVisibleModal, setIsVisibleModal] = useState(false);
     const [listChat, setListChat] = useState([]);
@@ -16,6 +17,25 @@ function ListChat({ setUserChat, chatRoom }) {
                 setListChat(res.data)
         })
     }, [reload])
+
+    useEffect(() => {
+        // if(listMessageSocket.id) {
+        //     const params = {
+        //         group_id: listMessageSocket.room,
+        //     }
+        //     informationGroup(params, (res, err) => {
+        //         if(res) {
+        //             console.log(res);
+        //         }
+        //     })
+        // }
+        if(listMessageSocket.id) {
+            const arrDelete = listChat.filter(item => item.room_id!==listMessageSocket.room )
+            const roomSocket = listChat.filter(item => item.room_id===listMessageSocket.room )
+            const listChatConvert = roomSocket.concat(arrDelete);
+            setListChat(listChatConvert)
+        }
+    }, [listMessageSocket]);
 
     return(
         <div className="list-chat">

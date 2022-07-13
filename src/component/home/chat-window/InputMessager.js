@@ -9,6 +9,7 @@ import { sendMessage } from "../../../api/apiMessage";
 import { useSelector } from 'react-redux';
 import { getFullNameSend } from "../../../ultis/getInformationMess";
 import checkTypeFile from "../../../ultis/checkTypeFile";
+import { ws } from "../../../socket/config";
 
 function InputMessager( props ) {
     const { setListMessage, parentMess, setParentMess, roomId } = props;
@@ -80,6 +81,8 @@ function InputMessager( props ) {
 
         sendMessage(formData, (res, err) => {
             if(res){
+                ws.send(JSON.stringify(res));
+
                 setListMessage(pre => [...pre, res.message])
                 setMessageSend('');
                 setParentMess({});

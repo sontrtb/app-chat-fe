@@ -2,7 +2,7 @@ import MessagerList from "./MessagerList";
 import HeaderChatWindow from "./HeaderChatWindows";
 import bannerChat from "../../../access/image/banner_chat_1.png";
 
-function ChatWindow({userChat}) {
+function ChatWindow({userChat, messageSocket}) {
 
     return(
         <div>
@@ -14,6 +14,7 @@ function ChatWindow({userChat}) {
                     />
                     <MessagerList
                         userChat={userChat}
+                        messageSocket={messageSocket}
                     />
                 </div> :
                 <img
