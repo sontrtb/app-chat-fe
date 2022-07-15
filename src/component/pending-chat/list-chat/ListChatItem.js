@@ -11,7 +11,7 @@ function ListChatItem({ chatItem, chatRoom }) {
     const dateNow = moment().format("DD/MM/YYYY"); 
     const getTimeMess = () => {
         if(moment(created_at).format("DD/MM/YYYY") === dateNow)
-            return moment(created_at).format("hh:mm");
+            return moment(created_at).format("HH:MM");
         return moment(created_at).format("DD/MM/YYYY");
     }
 

@@ -1,8 +1,7 @@
-import {successNotification} from "../../src/ultis/notification";
+import { successNotification } from "../../src/ultis/notification";
+import { API_WS_URL } from "../../src/config";
 
-const token = localStorage.getItem('token');
-const url = "ws://13.250.106.81:8000/ws/notification/" + token + "/";
-const ws = new WebSocket(url);
+var ws = new WebSocket(API_WS_URL + "/" + localStorage.getItem('token') + "/");
 
 function startWebSocket() {
     ws.onopen = (e) => {
@@ -10,12 +9,13 @@ function startWebSocket() {
     };
     ws.onmessage = (e) => {
         successNotification("Có tin nhắn mới từ: ");
+        console.log(e.data);
     };
     ws.onclose = (e) => {
         console.log("Disconnected Socket");
     };
     ws.onerror = (e) => {
-        console.log("Error");
+        console.log("Something wrong");
     };
 }
 
@@ -23,9 +23,13 @@ startWebSocket();
 // reconnect when disconnected
 setInterval(() => {
     if (ws.readyState === WebSocket.CLOSED) {
+        if (!localStorage.getItem('token')) {
+            return;
+        }
+        console.log("Reconnecting Socket");
+        ws = new WebSocket(API_WS_URL + "/" + localStorage.getItem('token') + "/");
         startWebSocket();
-        console.log("reconnect");
     }
-}, 3000);
+}, 1000);
 
-export {ws};
+export { ws };

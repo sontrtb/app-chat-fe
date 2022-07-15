@@ -47,24 +47,28 @@ function ModalChatInformation( props ) {
     const updateAvatarGroup = (e) => {
         const avatar = e.target.files[0]
         if(avatar) {
+            formData.append("group_id", inforGroup.id);
             formData.append("avatar", avatar)
             updateGroup(formData, (res, err) => {
                 if(res) {
                     console.log(res)
                 }
 
+                formData.delete("group_id");
                 formData.delete("avatar")
             })
         }
     }
 
     const updateNameGroup = () => {
+        formData.append("group_id", inforGroup.id);
         formData.append("name", nameUpdate)
         updateGroup(formData, (res, err) => {
             if(res) {
                 console.log(res)
             }
 
+            formData.delete("group_id");
             formData.delete("name")
             setShowInputName(false);
         })

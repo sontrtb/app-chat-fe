@@ -2,9 +2,9 @@ import { useState } from "react";
 import { API_MEDIA_URL } from "../../../config/index";
 import checkTypeFile from "../../../ultis/checkTypeFile";
 import ModalImageDetail from "../modal/ModalImageDetail";
-// import UrlIfy from "../../../ultis/converUrl";
+import UrlIfy from "./UrlIfy";
 
-function RenderContentMess ({message}) {
+function RenderContentMess({ message }) {
 
     const [isVisibleModal, setIsVisibleModal] = useState(false);
 
@@ -33,8 +33,10 @@ function RenderContentMess ({message}) {
                     Your browser does not support the video tag.
                 </video>
             }
-            <p>{message?.text}</p>
-            {/* <UrlIfy text={message?.text} /> */}
+
+            <p>
+                <UrlIfy text={message?.text} />
+            </p>
 
             <ModalImageDetail
                 isVisible={isVisibleModal}
