@@ -43,13 +43,16 @@ function getPendingChat(callback) {
 }
 
 function sendMessage(data, callback) {
+    localStorage.setItem("sending", "true");
     rootApi({
         withToken: true
     }).post(path.message.send, data)
     .then(res => {
+        localStorage.setItem("sending", "false");
         return callback(res.data);
     })
     .catch(err => {
+        localStorage.setItem("sending", "false");
         return callback(null, err);
     });
 }

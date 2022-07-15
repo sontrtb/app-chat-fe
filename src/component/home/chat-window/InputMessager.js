@@ -11,7 +11,7 @@ import { getFullNameSend } from "../../../ultis/getInformationMess";
 import checkTypeFile from "../../../ultis/checkTypeFile";
 import { ws } from "../../../socket/config";
 
-function InputMessager( props ) {
+function InputMessager(props) {
     const { setListMessage, parentMess, setParentMess, roomId } = props;
 
     const user = useSelector((state) => state.user).value;
@@ -26,7 +26,7 @@ function InputMessager( props ) {
 
     // get type file
     const convertTypeFile = (input) => {
-        if(!input)
+        if (!input)
             return false;
         return input.slice(0, 5);
     }
@@ -34,7 +34,7 @@ function InputMessager( props ) {
     // clear data
     const clearFormData = () => {
         formData.delete('text');
-        formData.delete('file');
+        formData.delete('file1');
         formData.delete('reply_to');
         typeMess.current = [];
         setFileSend();
@@ -49,11 +49,19 @@ function InputMessager( props ) {
     }, [fileSend])
 
     // change file
-    const handleChangeImage = (e) => {
-        const image = e.target.files[0]
+    const handleChangeImage = (e, img_pasted=null) => {
+        var image;
+
+        if (img_pasted) {
+            image = img_pasted;
+        }
+        else {
+            image = e.target.files[0];
+        }
+
         image.preview = URL.createObjectURL(image)
 
-        if(image) {
+        if (image) {
             setFileSend(image)
         }
     }
@@ -65,14 +73,19 @@ function InputMessager( props ) {
 
     // send mess
     const handleSendMess = () => {
-        if(!roomId)
+
+        if (localStorage.getItem("sending") === "true") {
             return;
+        }
         
-        if(messageSend.length !== 0){
+        if (!roomId)
+            return;
+
+        if (messageSend.length !== 0) {
             formData.append('text', messageSend);
         }
 
-        if(fileSend) {
+        if (fileSend) {
             formData.append("file1", fileSend);
         }
 
@@ -80,7 +93,7 @@ function InputMessager( props ) {
         parentMess?.id && formData.append('reply_to', parentMess?.id)
 
         sendMessage(formData, (res, err) => {
-            if(res){
+            if (res) {
                 ws.send(JSON.stringify(res));
 
                 setListMessage(pre => [...pre, res.message])
@@ -94,15 +107,27 @@ function InputMessager( props ) {
     }
 
     const handleEnter = (e) => {
-        if(e.key === 'Enter')
+        if (e.key === 'Enter')
             handleSendMess();
+    }
+
+    const pasteImage = (e) => {
+        var items = (e.clipboardData || e.originalEvent.clipboardData).items;
+        if (items) {
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].type.indexOf('image/') === 0 || items[i].type.indexOf('video/') === 0) {
+                    var blob = items[i].getAsFile();
+                    handleChangeImage(e, blob);
+                }
+            }
+        }
     }
 
     const handleClearParentMess = () => {
         setParentMess({});
     }
 
-    return(
+    return (
         <div className="input-messager">
             {
                 parentMess?.id &&
@@ -126,54 +151,54 @@ function InputMessager( props ) {
             }
 
             <div className='flex'>
-                <div>   
+                <div>
                     {
                         (
                             convertTypeFile(fileSend?.type) === "image" ||
                             convertTypeFile(fileSend?.type) === "video"
                         )
-                        ?
-                        <div className="image-preview-wrap">
-                            <label htmlFor="input-image-message">
-                                {
-                                    convertTypeFile(fileSend?.type) === "image" &&
-                                    <img
-                                        src={fileSend.preview}
-                                        alt="send img"
-                                        className="image-preview"
-                                    />
-                                }
-                                {
-                                    convertTypeFile(fileSend?.type) === "video" &&
-                                    <div className='video-preview-wrap'>
-                                        <video
-                                            width="50"
-                                            height="50"
-                                            className='video-preview'
-                                            muted
-                                            ref={videoPreviewRef}
-                                        >
-                                            <source
-                                                src={fileSend.preview}
-                                                type="video/mp4"
-                                            />
-                                            Your browser does not support the video tag.
-                                        </video>
-                                        <PlayCircleOutlined className="icon-play"/>
-                                    </div>
-                                }
-                            </label>
-                            <div
-                                className='icon-delete-image'
-                                onClick={handleDeleteImage}
-                            >
-                                <CloseCircleOutlined />
+                            ?
+                            <div className="image-preview-wrap">
+                                <label htmlFor="input-image-message">
+                                    {
+                                        convertTypeFile(fileSend?.type) === "image" &&
+                                        <img
+                                            src={fileSend.preview}
+                                            alt="send img"
+                                            className="image-preview"
+                                        />
+                                    }
+                                    {
+                                        convertTypeFile(fileSend?.type) === "video" &&
+                                        <div className='video-preview-wrap'>
+                                            <video
+                                                width="50"
+                                                height="50"
+                                                className='video-preview'
+                                                muted
+                                                ref={videoPreviewRef}
+                                            >
+                                                <source
+                                                    src={fileSend.preview}
+                                                    type="video/mp4"
+                                                />
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <PlayCircleOutlined className="icon-play" />
+                                        </div>
+                                    }
+                                </label>
+                                <div
+                                    className='icon-delete-image'
+                                    onClick={handleDeleteImage}
+                                >
+                                    <CloseCircleOutlined />
+                                </div>
                             </div>
-                        </div>
-                        :
-                        <label htmlFor="input-image-message">
-                            <PictureOutlined className='icon-image'/>
-                        </label>
+                            :
+                            <label htmlFor="input-image-message">
+                                <PictureOutlined className='icon-image' />
+                            </label>
                     }
                 </div>
                 <input
@@ -190,6 +215,7 @@ function InputMessager( props ) {
                         value={messageSend}
                         onChange={e => setMessageSend(e.target.value)}
                         onKeyDown={e => handleEnter(e)}
+                        onPaste={e => pasteImage(e)}
                     />
                     <div
                         className='icon-send'
