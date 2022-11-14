@@ -21,6 +21,9 @@
 @import "./component/home/chat-window/reply-message";
 
 @import "./component/home/modal/modal-chat-information";
+@import "./component/home/modal/modal-create-group";
+@import "./component/home/modal/modal-image-detail";
+@import "./component/home/modal/modal-member-infor";
 
 // auth
 @import "./component/auth/input-auth";
@@ -31,6 +34,7 @@
 // people
 @import "./component/people/people-item";
 @import "./component/people/user-detail";
+@import "./component/people/people-list";
 
 //pending-chat
 @import "./component//pending-chat/profile/profile-user-pending.scss";
@@ -40,6 +44,9 @@
 @import "./page//profile";
 @import "./page/people";
 @import "./page//pending-chat";
+
+// global
+@import "./global/modal";
 
 // rgb(101, 126, 210)
 //rgb(180, 142, 253)

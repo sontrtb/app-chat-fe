@@ -1,10 +1,11 @@
 import avatarDefault from "../../../access/image/avatar_default.jpg";
-import {renderContentMess} from "../../home/chat-window/MessagerItem";
 import { API_MEDIA_URL } from "../../../config/index";
 import {useState} from 'react';
 import {SendOutlined} from '@ant-design/icons';
 import { sendMessage } from "../../../api/apiMessage";
 import { useNavigate } from 'react-router-dom';
+import RenderContentMess from "../../home/chat-window/RenderContentMess";
+import { ws } from "../../../socket/config";
 
 function ProfileUserPending({userPendingChat}) {
 
@@ -29,6 +30,7 @@ function ProfileUserPending({userPendingChat}) {
         sendMessage(formData, (res, err) => {
             if(res){
                 setMessageSend("");
+                ws.send(JSON.stringify(res));
     
                 const dataUser = {
                     id: userPendingChat.room_id,
@@ -68,7 +70,7 @@ function ProfileUserPending({userPendingChat}) {
                         <div className="message">
                             {
                                 userPendingChat && 
-                                renderContentMess(userPendingChat.last_message)
+                                <RenderContentMess message={userPendingChat.last_message} />
                             }
                         </div>
                         <div className="send-mess">

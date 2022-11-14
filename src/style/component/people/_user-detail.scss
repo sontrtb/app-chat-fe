@@ -15,4 +15,17 @@
         border-color: rgb(249, 249, 249);
         box-shadow: 0 3px 5px 0 rgb(0 0 0 / 50%);
     }
+
+    .message {
+        margin-top: 30px;
+        font-weight: 500;
+        font-size: 20px;
+        color: rgb(101, 126, 210);
+        cursor: pointer;
+        transition: transform 0.2s;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
 }

@@ -11,6 +11,7 @@ import { useState } from 'react';
 import {RegisterAPI} from '../api/apiAuth';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../redux/actions';
+import { successNotification } from "../ultis/notification";
 
 function Register() {
 
@@ -85,6 +86,7 @@ function Register() {
         if(validateFormRegister()) {
             RegisterAPI(valueRegister, (res, err) => {
                 if(res) {
+                    successNotification("Đăng kí thành công")
                     localStorage.setItem("token", res.token)
                     dispatch(addUser(res.user))
                     setValueRegister(valueRegisterInit)

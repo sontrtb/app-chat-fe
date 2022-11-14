@@ -1,26 +1,60 @@
 import ListChatItem from "./ListChatItem";
 import { getListChat } from "../../../api/apiMessage";
 import { useState, useEffect } from "react";
+import ModalCreateGroup from "./ModalCreateGroup";
+import {UsergroupAddOutlined} from "@ant-design/icons";
+import { informationGroup } from "../../../api/apiGroup";
 
-function ListChat({ setUserChat, chatRoom }) {
+function ListChat({ setUserChat, chatRoom, listMessageSocket }) {
 
+    const [isVisibleModal, setIsVisibleModal] = useState(false);
     const [listChat, setListChat] = useState([]);
+    const [reload, setReload] = useState(true);
 
     useEffect(() => {
         getListChat((res, err) => {
             if(res)
                 setListChat(res.data)
         })
-    }, [])
+    }, [reload])
+
+    useEffect(() => {
+        // if(listMessageSocket.id) {
+        //     const params = {
+        //         group_id: listMessageSocket.room,
+        //     }
+        //     informationGroup(params, (res, err) => {
+        //         if(res) {
+        //             console.log(res);
+        //         }
+        //     })
+        // }
+        if(listMessageSocket.id) {
+            const arrDelete = listChat.filter(item => item.room_id!==listMessageSocket.room )
+            const roomSocket = listChat.filter(item => item.room_id===listMessageSocket.room )
+            const listChatConvert = roomSocket.concat(arrDelete);
+            setListChat(listChatConvert)
+        }
+    }, [listMessageSocket]);
 
     return(
         <div className="list-chat">
+            <div
+                className="create-group"
+                onClick={() => setIsVisibleModal(!isVisibleModal)}
+            >   
+                <div>
+                    Tạo nhóm chat
+                </div>
+                <UsergroupAddOutlined className="create-group-icon"/>
+            </div>
             {
                 listChat.map(chatItem => {
                     const dataChat = {
                         id: chatItem.room_id,
                         name: chatItem.name,
                         avatar: chatItem.avatar,
+                        room_type: chatItem.room_type
                     }
                     return (
                         <div
@@ -42,6 +76,12 @@ function ListChat({ setUserChat, chatRoom }) {
                     </div>
                 )
             }
+
+            <ModalCreateGroup
+                isVisible={isVisibleModal}
+                setIsVisibleModal={setIsVisibleModal}
+                reloadListChat={() => setReload(!reload)}
+            />
         </div>
     )
 }

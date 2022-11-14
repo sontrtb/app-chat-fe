@@ -1,0 +1,44 @@
+.modal-create-group {
+
+    .title {
+        margin-bottom: 20px;
+        border-style: solid;
+        border-width: 0 0 1px 0;
+        padding-bottom: 20px;
+        border-color: rgb(187, 187, 187);
+    }
+
+    .note-admin {
+        margin-top: 20px;
+    }
+
+    .radio-wrap {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 30px;
+    }
+
+    .none {
+        display: none;
+    }
+
+    .icon-avatar {
+        font-size: 50px;
+        color: rgb(112, 112, 112);
+        margin-right: 10px;
+        padding: 9px 10px;
+        border-radius: 10px;
+        background-color: #f2f5fd;
+        cursor: pointer;
+        box-shadow: rgba(70, 70, 70, 0.5) 0px 1px 2px;
+    }
+
+    .avatar-preview {
+        height: 50px;
+        width: 50px;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: rgba(70, 70, 70, 0.5) 0px 1px 2px;
+        cursor: pointer;
+    }
+}

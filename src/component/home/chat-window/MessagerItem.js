@@ -7,35 +7,8 @@ import {
     getAvatarUserSend
 } from "../../../ultis/getInformationMess";
 import { reactMessage } from "../../../api/apiMessage";
-import { API_MEDIA_URL } from "../../../config/index";
 import checkTypeFile from "../../../ultis/checkTypeFile";
-
-const renderContentMess = (message) => {
-
-    return (
-        <div>
-            {
-                message?.files && checkTypeFile(message?.files[0]) === "image" &&
-                <img
-                    src={API_MEDIA_URL + message?.files[0]}
-                    alt="anh gui/nhan"
-                    className="image-mess"
-                />
-            }
-            {
-                message?.files && checkTypeFile(message?.files[0]) === "video" &&
-                <video width="420" height="300" controls>
-                    <source
-                        src={API_MEDIA_URL + message.files[0]}
-                        type="video/mp4"
-                    />
-                    Your browser does not support the video tag.
-                </video>
-            }
-            <p>{message?.text}</p>
-        </div>
-    )
-}
+import RenderContentMess from "./RenderContentMess";
 
 function MessagerItem(props) {
     const { isSend, message, setParentMess } = props;
@@ -91,7 +64,7 @@ function MessagerItem(props) {
                     </div>
 
                     <div className="mess-send">
-                        {renderContentMess(message)}
+                        <RenderContentMess message={message} />
                     </div>
 
                     <ListReacted
@@ -115,7 +88,7 @@ function MessagerItem(props) {
                             {renderParentMess(reply_to)}
 
                             <div className="mess-receive">
-                                {renderContentMess(message)}
+                                <RenderContentMess message={message} />
                             </div>
 
                             <div className="action-message">
@@ -141,4 +114,3 @@ function MessagerItem(props) {
 }
 
 export default MessagerItem;
-export {renderContentMess};
