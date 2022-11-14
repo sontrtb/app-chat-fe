@@ -4,8 +4,8 @@ function checkTypeFile(url) {
     if(!url)
         return null;
     
-    var ext = url.split('.').pop();
-    if (ext === 'jpg' || ext === 'jpeg' || ext === 'png' || ext === 'gif' || ext === 'JPG') {
+    var ext = url.split('.').pop().toLowerCase();
+    if (ext === 'jpg' || ext === 'jpeg' || ext === 'png' || ext === 'gif') {
         return 'image';
     } else if (ext === 'mp4' || ext === 'ogg' || ext === 'webm') {
         return 'video';
